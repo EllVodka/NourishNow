@@ -1,0 +1,35 @@
+:root{
+    --marian-blue: #41448b;
+    --isabeline: #EFE9E7;
+    --lavender: #DAE0F2;
+    --mimi-pink: #F9CFF2;
+    --palatinate: #52154E;
+    --transparent-blue : #41448BD9;
+}
+
+html {
+    background-color: #EFE9E7;
+    font-family:  Roboto;
+    color: var(--marian-blue);
+}
+
+
+
+body {    
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-row-gap: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    height: 10vh;
+    background-color: var(--palatinate);
+}
+
+.navbar-image {
+    background-color: var(--lavender);
+}
