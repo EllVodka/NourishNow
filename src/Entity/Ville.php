@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\VilleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,6 +24,21 @@ class Ville
      */
     private $libelle;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Restaurant::class, mappedBy="fk_ville")
+     */
+    private $restaurants;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=secteur::class, inversedBy="villes")
+     */
+    private $fk_secteur;
+
+    public function __construct()
+    {
+        $this->restaurants = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +52,48 @@ class Ville
     public function setLibelle(?string $libelle): self
     {
         $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Restaurant>
+     */
+    public function getRestaurants(): Collection
+    {
+        return $this->restaurants;
+    }
+
+    public function addRestaurant(Restaurant $restaurant): self
+    {
+        if (!$this->restaurants->contains($restaurant)) {
+            $this->restaurants[] = $restaurant;
+            $restaurant->setFkVille($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRestaurant(Restaurant $restaurant): self
+    {
+        if ($this->restaurants->removeElement($restaurant)) {
+            // set the owning side to null (unless already changed)
+            if ($restaurant->getFkVille() === $this) {
+                $restaurant->setFkVille(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getFkSecteur(): ?secteur
+    {
+        return $this->fk_secteur;
+    }
+
+    public function setFkSecteur(?secteur $fk_secteur): self
+    {
+        $this->fk_secteur = $fk_secteur;
 
         return $this;
     }
