@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h1>Register</h1>
+
+    {{ form_start(formPersonne) }}
+        {{ form_row(formPersonne.nom) }}
+        {{ form_row(formPersonne.prenom) }}
+        {{ form_row(formPersonne.email) }}
+        {{ form_row(formPersonne.telephone) }}
+        {{ form_row(formPersonne.adresse) }}
+        {{ form_row(formPersonne.vehicule) }}
+        {{ form_widget(formPersonne.Ajouter) }}
+    {{ form_end(formPersonne) }}
+{% endblock %}
