@@ -77,8 +77,11 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('_profiler_home');
         }
 
-        return $this->render('registration/registerPersonne.html.twig', [
-            'formPersonne' => $form->createView(),
-        ]);
+        return $this->render(
+            'registration/registerPersonne.html.twig',
+            [
+                'formPersonne' => $form->createView(),
+            ]
+        );
     }
 }
