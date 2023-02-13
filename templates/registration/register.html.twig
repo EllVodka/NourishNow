@@ -3,14 +3,25 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+<link rel="stylesheet" href="/styles/register.css">
+<div class="page-register">
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+    <div class="register-user">
 
-        {{ form_widget(registrationForm.Ajouter) }}
+        <div class="register-user-input">
+            {{ form_label(registrationForm.email) }}
+            {{ form_widget(registrationForm.email) }}
+        </div>
+        <div class="register-user-input">
+            {{ form_label(registrationForm.plainPassword) }}
+            {{ form_widget(registrationForm.plainPassword) }}
+        </div>
+
+        <span class="btn-form-user">
+            {{ form_widget(registrationForm.Ajouter) }}
+        </span>
+    </div>
     {{ form_end(registrationForm) }}
+</div>
+
 {% endblock %}
