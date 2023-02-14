@@ -30,17 +30,17 @@ class Restaurant
     private $lieu;
 
     /**
-     * @ORM\ManyToOne(targetEntity=personne::class, inversedBy="restaurants")
+     * @ORM\ManyToOne(targetEntity=Personne::class, inversedBy="restaurants")
      */
     private $fk_personne;
 
     /**
-     * @ORM\ManyToOne(targetEntity=typeResto::class, inversedBy="restaurants")
+     * @ORM\ManyToOne(targetEntity=TypeResto::class, inversedBy="restaurants")
      */
     private $fk_typeResto;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ville::class, inversedBy="restaurants")
+     * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="restaurants")
      */
     private $fk_ville;
 
@@ -83,36 +83,36 @@ class Restaurant
         return $this;
     }
 
-    public function getFkPersonne(): ?personne
+    public function getFkPersonne(): ?Personne
     {
         return $this->fk_personne;
     }
 
-    public function setFkPersonne(?personne $fk_personne): self
+    public function setFkPersonne(?Personne $fk_personne): self
     {
         $this->fk_personne = $fk_personne;
 
         return $this;
     }
 
-    public function getFkTypeResto(): ?typeResto
+    public function getFkTypeResto(): ?TypeResto
     {
         return $this->fk_typeResto;
     }
 
-    public function setFkTypeResto(?typeResto $fk_typeResto): self
+    public function setFkTypeResto(?TypeResto $fk_typeResto): self
     {
         $this->fk_typeResto = $fk_typeResto;
 
         return $this;
     }
 
-    public function getFkVille(): ?ville
+    public function getFkVille(): ?Ville
     {
         return $this->fk_ville;
     }
 
-    public function setFkVille(?ville $fk_ville): self
+    public function setFkVille(?Ville $fk_ville): self
     {
         $this->fk_ville = $fk_ville;
 

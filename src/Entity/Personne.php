@@ -74,6 +74,10 @@ class Personne
         $this->restaurants = new ArrayCollection();
         $this->commandes = new ArrayCollection();
     }
+    public function __toString()
+    {
+        return $this->nom.' '.$this->prenom;
+    }
 
     public function getId(): ?int
     {

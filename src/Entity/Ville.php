@@ -30,7 +30,7 @@ class Ville
     private $restaurants;
 
     /**
-     * @ORM\ManyToOne(targetEntity=secteur::class, inversedBy="villes")
+     * @ORM\ManyToOne(targetEntity=Secteur::class, inversedBy="villes")
      */
     private $fk_secteur;
 
@@ -43,6 +43,11 @@ class Ville
     {
         $this->restaurants = new ArrayCollection();
         $this->personnes = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->libelle;
     }
 
     public function getId(): ?int
@@ -92,12 +97,12 @@ class Ville
         return $this;
     }
 
-    public function getFkSecteur(): ?secteur
+    public function getFkSecteur(): ?Secteur
     {
         return $this->fk_secteur;
     }
 
-    public function setFkSecteur(?secteur $fk_secteur): self
+    public function setFkSecteur(?Secteur $fk_secteur): self
     {
         $this->fk_secteur = $fk_secteur;
 
