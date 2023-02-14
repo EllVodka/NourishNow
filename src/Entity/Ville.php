@@ -34,9 +34,15 @@ class Ville
      */
     private $fk_secteur;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Personne::class, mappedBy="fk_ville")
+     */
+    private $personnes;
+
     public function __construct()
     {
         $this->restaurants = new ArrayCollection();
+        $this->personnes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -94,6 +100,36 @@ class Ville
     public function setFkSecteur(?secteur $fk_secteur): self
     {
         $this->fk_secteur = $fk_secteur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Personne>
+     */
+    public function getPersonnes(): Collection
+    {
+        return $this->personnes;
+    }
+
+    public function addPersonne(Personne $personne): self
+    {
+        if (!$this->personnes->contains($personne)) {
+            $this->personnes[] = $personne;
+            $personne->setFkVille($this);
+        }
+
+        return $this;
+    }
+
+    public function removePersonne(Personne $personne): self
+    {
+        if ($this->personnes->removeElement($personne)) {
+            // set the owning side to null (unless already changed)
+            if ($personne->getFkVille() === $this) {
+                $personne->setFkVille(null);
+            }
+        }
 
         return $this;
     }
