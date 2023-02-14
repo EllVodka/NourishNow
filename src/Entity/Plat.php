@@ -32,6 +32,11 @@ class Plat
      */
     private $tarif;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=restaurant::class, inversedBy="plats")
+     */
+    private $fk_restaurant;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Plat
     public function setTarif(?float $tarif): self
     {
         $this->tarif = $tarif;
+
+        return $this;
+    }
+
+    public function getFkRestaurant(): ?restaurant
+    {
+        return $this->fk_restaurant;
+    }
+
+    public function setFkRestaurant(?restaurant $fk_restaurant): self
+    {
+        $this->fk_restaurant = $fk_restaurant;
 
         return $this;
     }

@@ -32,6 +32,16 @@ class Commande
      */
     private $status;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=personne::class, inversedBy="commandes")
+     */
+    private $fk_livreur;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=personne::class, inversedBy="commandes")
+     */
+    private $fk_client;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +79,30 @@ class Commande
     public function setStatus(?string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getFkLivreur(): ?personne
+    {
+        return $this->fk_livreur;
+    }
+
+    public function setFkLivreur(?personne $fk_livreur): self
+    {
+        $this->fk_livreur = $fk_livreur;
+
+        return $this;
+    }
+
+    public function getFkClient(): ?personne
+    {
+        return $this->fk_client;
+    }
+
+    public function setFkClient(?personne $fk_client): self
+    {
+        $this->fk_client = $fk_client;
 
         return $this;
     }

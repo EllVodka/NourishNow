@@ -54,9 +54,20 @@ class Personne
      */
     private $restaurants;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="fk_livreur")
+     */
+    private $commandes;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=ville::class, inversedBy="personnes")
+     */
+    private $fk_ville;
+
     public function __construct()
     {
         $this->restaurants = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -162,6 +173,48 @@ class Personne
                 $restaurant->setFkPersonne(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->setFkLivreur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getFkLivreur() === $this) {
+                $commande->setFkLivreur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getFkVille(): ?ville
+    {
+        return $this->fk_ville;
+    }
+
+    public function setFkVille(?ville $fk_ville): self
+    {
+        $this->fk_ville = $fk_ville;
 
         return $this;
     }

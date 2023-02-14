@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RestaurantRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,16 @@ class Restaurant
      * @ORM\ManyToOne(targetEntity=ville::class, inversedBy="restaurants")
      */
     private $fk_ville;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Plat::class, mappedBy="fk_restaurant")
+     */
+    private $plats;
+
+    public function __construct()
+    {
+        $this->plats = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +115,36 @@ class Restaurant
     public function setFkVille(?ville $fk_ville): self
     {
         $this->fk_ville = $fk_ville;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Plat>
+     */
+    public function getPlats(): Collection
+    {
+        return $this->plats;
+    }
+
+    public function addPlat(Plat $plat): self
+    {
+        if (!$this->plats->contains($plat)) {
+            $this->plats[] = $plat;
+            $plat->setFkRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlat(Plat $plat): self
+    {
+        if ($this->plats->removeElement($plat)) {
+            // set the owning side to null (unless already changed)
+            if ($plat->getFkRestaurant() === $this) {
+                $plat->setFkRestaurant(null);
+            }
+        }
 
         return $this;
     }
