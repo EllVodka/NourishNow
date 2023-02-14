@@ -60,7 +60,7 @@ class Personne
     private $commandes;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ville::class, inversedBy="personnes")
+     * @ORM\ManyToOne(targetEntity=Ville::class, inversedBy="personnes")
      */
     private $fk_ville;
 
@@ -216,12 +216,12 @@ class Personne
         return $this;
     }
 
-    public function getFkVille(): ?ville
+    public function getFkVille(): ?Ville
     {
         return $this->fk_ville;
     }
 
-    public function setFkVille(?ville $fk_ville): self
+    public function setFkVille(?Ville $fk_ville): self
     {
         $this->fk_ville = $fk_ville;
 
