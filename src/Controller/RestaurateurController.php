@@ -15,12 +15,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/restaurateur",)
+ * @IsGranted("ROLE_RESTAURATEUR")
  */
 class RestaurateurController extends AbstractController
 {
     /**
      * @Route("/", name="app_restaurateur")
-     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function index(RestaurantRepository $restaurantRepository): Response
     {
@@ -32,7 +32,6 @@ class RestaurateurController extends AbstractController
 
     /**
      * @Route("/add", name="app_restaurateur_add")*
-     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function add(PersonneRepository $personneRepository, ManagerRegistry $doctrine, Request $request): Response
     {
@@ -59,8 +58,25 @@ class RestaurateurController extends AbstractController
     }
 
     /**
+     * @Route("/edit/{id}", name="app_restaurateur_edit")
+     */
+    public function edit(Request $request, Restaurant $restaurant, RestaurantRepository $restaurantRepository): Response
+    {
+        $form = $this->createForm(RestaurateurType::class, $restaurant);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+           $restaurantRepository->add($restaurant,true);
+
+            return $this->redirectToRoute('app_restaurateur_view',["id"=>$restaurant->getId()]);
+        }
+
+        return $this->render('restaurateur/edit.html.twig', [
+            'formRestaurant' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/{id}", name="app_restaurateur_view")
-     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function view(int $id,RestaurantRepository $restaurantRepository): Response
     {
