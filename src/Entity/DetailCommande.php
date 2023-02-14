@@ -22,6 +22,16 @@ class DetailCommande
      */
     private $quantite;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Plat::class, inversedBy="detailCommandes")
+     */
+    private $fk_plat;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Commande::class, inversedBy="detailCommandes")
+     */
+    private $fk_commande;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +45,30 @@ class DetailCommande
     public function setQuantite(?int $quantite): self
     {
         $this->quantite = $quantite;
+
+        return $this;
+    }
+
+    public function getFkPlat(): ?Plat
+    {
+        return $this->fk_plat;
+    }
+
+    public function setFkPlat(?Plat $fk_plat): self
+    {
+        $this->fk_plat = $fk_plat;
+
+        return $this;
+    }
+
+    public function getFkCommande(): ?Commande
+    {
+        return $this->fk_commande;
+    }
+
+    public function setFkCommande(?Commande $fk_commande): self
+    {
+        $this->fk_commande = $fk_commande;
 
         return $this;
     }

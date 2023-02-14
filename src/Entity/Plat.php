@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PlatRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,16 @@ class Plat
      * @ORM\ManyToOne(targetEntity=restaurant::class, inversedBy="plats")
      */
     private $fk_restaurant;
+
+    /**
+     * @ORM\OneToMany(targetEntity=DetailCommande::class, mappedBy="fk_plat")
+     */
+    private $detailCommandes;
+
+    public function __construct()
+    {
+        $this->detailCommandes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +98,36 @@ class Plat
     public function setFkRestaurant(?restaurant $fk_restaurant): self
     {
         $this->fk_restaurant = $fk_restaurant;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DetailCommande>
+     */
+    public function getDetailCommandes(): Collection
+    {
+        return $this->detailCommandes;
+    }
+
+    public function addDetailCommande(DetailCommande $detailCommande): self
+    {
+        if (!$this->detailCommandes->contains($detailCommande)) {
+            $this->detailCommandes[] = $detailCommande;
+            $detailCommande->setFkPlat($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetailCommande(DetailCommande $detailCommande): self
+    {
+        if ($this->detailCommandes->removeElement($detailCommande)) {
+            // set the owning side to null (unless already changed)
+            if ($detailCommande->getFkPlat() === $this) {
+                $detailCommande->setFkPlat(null);
+            }
+        }
 
         return $this;
     }

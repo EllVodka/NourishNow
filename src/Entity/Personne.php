@@ -64,6 +64,11 @@ class Personne
      */
     private $fk_ville;
 
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="personne", cascade={"persist", "remove"})
+     */
+    private $fk_user;
+
     public function __construct()
     {
         $this->restaurants = new ArrayCollection();
@@ -215,6 +220,18 @@ class Personne
     public function setFkVille(?ville $fk_ville): self
     {
         $this->fk_ville = $fk_ville;
+
+        return $this;
+    }
+
+    public function getFkUser(): ?User
+    {
+        return $this->fk_user;
+    }
+
+    public function setFkUser(?User $fk_user): self
+    {
+        $this->fk_user = $fk_user;
 
         return $this;
     }
