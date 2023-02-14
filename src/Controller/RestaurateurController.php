@@ -57,4 +57,16 @@ class RestaurateurController extends AbstractController
             'formRestaurant' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/{id}", name="app_restaurateur_view")
+     * @IsGranted("ROLE_RESTAURATEUR")
+     */
+    public function view(int $id,RestaurantRepository $restaurantRepository): Response
+    {
+        $restaurant = $restaurantRepository->find($id);
+        return $this->render('restaurateur/view.html.twig', [
+            'restaurant' => $restaurant,
+        ]);
+    }
 }

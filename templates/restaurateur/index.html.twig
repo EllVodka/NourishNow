@@ -15,6 +15,7 @@
             {{ restaurant.id }}
             {{ restaurant.lieu }}
             {{ restaurant.nom }}
+            <a href="{{ path('app_restaurateur_view',{'id':restaurant.id}) }}">Voir le resto</a>
         </li>
     </ul>
         
