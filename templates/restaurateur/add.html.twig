@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+{{ form_start(formRestaurant) }}
+
+            {{ form_label(formRestaurant.nom) }}
+            {{ form_widget(formRestaurant.nom) }}
+
+            {{ form_label(formRestaurant.lieu) }}
+            {{ form_widget(formRestaurant.lieu) }}
+
+            {{ form_widget(formRestaurant.Ajouter) }}
+
+    {{ form_end(formRestaurant) }}
+{% endblock %}

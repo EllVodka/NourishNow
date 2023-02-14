@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="/styles/register.css">
+{{ form_start(formPersonne) }}
+
+<div class="register-form">
+    <div class="register-input first">
+            {{ form_label(formPersonne.nom) }}
+        {{ form_widget(formPersonne.nom) }}
+    </div>
+
+    <div class="register-input second">
+            {{ form_label(formPersonne.prenom) }}
+        {{ form_widget(formPersonne.prenom) }}
+    </div>
+
+    <div class="register-input thirst">
+            {{ form_label(formPersonne.email) }}
+        {{ form_widget(formPersonne.email) }}
+    </div>
+
+    <div class="register-input fourth">
+            {{ form_label(formPersonne.telephone) }}
+        {{ form_widget(formPersonne.telephone) }}
+    </div>
+
+    <div class="register-input fifth">
+            {{ form_label(formPersonne.role) }}
+        {{ form_widget(formPersonne.role) }}
+    </div>
+
+    <div class="register-input six">
+            {{ form_label(formPersonne.adresse) }}
+        {{ form_widget(formPersonne.adresse) }}
+    </div>
+
+    <div class="register-input six">
+            {{ form_label(formPersonne.vehicule) }}
+        {{ form_widget(formPersonne.vehicule) }}
+    </div>
+
+    <span class="btn-form">
+        {{ form_widget(formPersonne.Ajouter) }}
+    </span>
+
+</div>
+
+{{ form_end(formPersonne) }}
+{% endblock %}

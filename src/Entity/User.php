@@ -4,12 +4,14 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -35,6 +37,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Personne::class, mappedBy="fk_user", cascade={"persist", "remove"})
+     */
+    private $personne;
 
     public function getId(): ?int
     {
@@ -123,5 +130,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getPersonne(): ?Personne
+    {
+        return $this->personne;
+    }
+
+    public function setPersonne(?Personne $personne): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($personne === null && $this->personne !== null) {
+            $this->personne->setFkUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($personne !== null && $personne->getFkUser() !== $this) {
+            $personne->setFkUser($this);
+        }
+
+        $this->personne = $personne;
+
+        return $this;
     }
 }
