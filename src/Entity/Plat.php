@@ -35,7 +35,7 @@ class Plat
     private $tarif;
 
     /**
-     * @ORM\ManyToOne(targetEntity=restaurant::class, inversedBy="plats")
+     * @ORM\ManyToOne(targetEntity=Restaurant::class, inversedBy="plats")
      */
     private $fk_restaurant;
 
@@ -90,12 +90,12 @@ class Plat
         return $this;
     }
 
-    public function getFkRestaurant(): ?restaurant
+    public function getFkRestaurant(): ?Restaurant
     {
         return $this->fk_restaurant;
     }
 
-    public function setFkRestaurant(?restaurant $fk_restaurant): self
+    public function setFkRestaurant(?Restaurant $fk_restaurant): self
     {
         $this->fk_restaurant = $fk_restaurant;
 

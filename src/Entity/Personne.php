@@ -65,7 +65,7 @@ class Personne
     private $fk_ville;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="personne", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="Personne", cascade={"persist", "remove"})
      */
     private $fk_user;
 
