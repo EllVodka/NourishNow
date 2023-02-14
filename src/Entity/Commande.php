@@ -49,6 +49,11 @@ class Commande
      */
     private $detailCommandes;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Status::class, inversedBy="commandes")
+     */
+    private $fk_status;
+
     public function __construct()
     {
         $this->detailCommandes = new ArrayCollection();
@@ -145,6 +150,18 @@ class Commande
                 $detailCommande->setFkCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFkStatus(): ?Status
+    {
+        return $this->fk_status;
+    }
+
+    public function setFkStatus(?Status $fk_status): self
+    {
+        $this->fk_status = $fk_status;
 
         return $this;
     }
