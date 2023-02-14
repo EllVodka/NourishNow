@@ -41,7 +41,6 @@ class PlatController extends AbstractController
 
     /**
      * @Route("/add/{idResto}", name="app_plat_add")
-     * 
      */
     public function add(int $idResto, Request $request, RestaurantRepository $restaurantRepository, ManagerRegistry $doctrine): Response
     {
@@ -63,6 +62,25 @@ class PlatController extends AbstractController
         }
 
         return $this->render('plat/add.html.twig', [
+            'platForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/edit/{id}", name="app_plat_edit")
+     */
+    public function edit(Request $request, PlatRepository $platRepository, Plat $plat): Response
+    {
+        $form = $this->createForm(PlatType::class, $plat);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $platRepository->add($plat,true);
+
+            return $this->redirectToRoute('app_plat_view',["id"=>$plat->getId()]);
+        }
+
+        return $this->render('plat/edit.html.twig', [
             'platForm' => $form->createView(),
         ]);
     }
