@@ -1,21 +1,21 @@
-:root{
+:root {
     --marian-blue: #41448b;
     --isabeline: #EFE9E7;
     --lavender: #DAE0F2;
     --mimi-pink: #F9CFF2;
     --palatinate: #52154E;
-    --transparent-blue : #41448BD9;
+    --transparent-blue: #41448BD9;
 }
 
 html {
     background-color: #EFE9E7;
-    font-family:  Roboto;
+    font-family: Roboto;
     color: var(--marian-blue);
 }
 
 
 
-body {    
+body {
     display: grid;
     grid-template-rows: 1fr auto;
     grid-row-gap: 10px;
@@ -25,9 +25,48 @@ body {
 
 .navbar {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     height: 10vh;
     background-color: var(--palatinate);
+}
+
+.connexion-btn {
+    background-color: var(--isabeline);
+    color: var(--marian-blue);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    align-items: center;
+    justify-content: space-between;
+    height: 50%;
+    width: 10%;
+}
+
+.btn-login {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 5%;
+    border-top-left-radius: 20px;
+    border-end-start-radius: 20px;
+}
+.btn-register{
+    height: 100%;
+    padding-right: 5%;
+    display: flex;
+    align-items: center;
+    border-top-right-radius: 20px;
+    border-end-end-radius: 20px;
+}
+
+:is(.btn-login, .btn-register)>a {
+    text-decoration: none;
+    color: var(--marian-blue);
+}
+
+:is(.btn-login, .btn-register):hover {
+    background-color: var(--lavender);
 }
 
 .navbar-image {
