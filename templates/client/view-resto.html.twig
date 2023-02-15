@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ClientController!{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="/styles/client.css">
+{% for p in plats %}
+<div class="plat-card">
+    <h2>{{ p.libelle }}</h2>
+    <p>{{ p.description }} </p>
+    <p>{{ p.tarif }} </p>
+    <a href="{{ path('app_panier_add',{'id':p.id,'page':1}) }}">+</a>
+</div>
+{% endfor %}
+<a href="{{ path('app_panier') }}">Voir le panier</a>
+{% endblock %}

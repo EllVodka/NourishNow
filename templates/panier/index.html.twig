@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ClientController!{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="/styles/client.css">
+
+<section class="bg-light p-3">
+    <h1>Votre panier</h1>
+</section>
+
+{% if dataPanier > 1 %}
+<a href="{{path('app_panier_delete_all')}}">Supprimer le panier</a>
+{% endif %}
+
+{% for dp in dataPanier %}
+
+<div>
+    <p>quatité : {{ dp.quantite }}</p>
+    <p>Plat : {{ dp.plat.libelle }}</p>
+    <p>total HT : {{ dp.quantite * dp.plat.tarif }}</p>
+    <a href="{{ path('app_panier_add',{
+        'id':dp.plat.id,
+        'page':2}) }}">+</a>
+    <a href="{{ path('app_panier_remove',{
+            'id':dp.plat.id}) }}">-</a>
+    <a href="{{ path('app_panier_delete',{
+            'id':dp.plat.id}) }}">X</a>
+</div>
+
+{% else %}
+
+<p>Votre panier est vide</p>
+
+{% endfor %}
+
+<p>Prix total TTC : {{ total }}</p>
+
+{% if dataPanier == 0 %}
+<a href="{{ path('app_client_view_resto',{'restaurant':dataPanier[0].plat.fkrestaurant.id}) }}">Continuer les
+    commande</a>
+{% else %}
+<a href="{{ path('app_client') }}">Continuer les
+    commande</a>
+{% endif %}
+
+{% endblock %}
