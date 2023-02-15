@@ -19,8 +19,8 @@ class ClientController extends AbstractController
     public function index(RestaurantRepository $restaurantRepository): Response
     {
         return $this->render('client/index.html.twig', [
-            'restaurants' => $restaurantRepository->findBy(
-                ["fk_ville" => $this->getUser()->getPersonne()->getFkVille()->getId()]
+            'restaurants' => $restaurantRepository->findRestaurant(
+                $this->getUser()->getPersonne()->getFkVille()->getId()
             ),
         ]);
     }

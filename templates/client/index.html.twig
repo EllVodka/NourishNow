@@ -3,5 +3,33 @@
 {% block title %}Hello ClientController!{% endblock %}
 
 {% block body %}
-{{ dump(restaurants) }}
+<link rel="stylesheet" href="/styles/client.css">
+<div class="page-client">
+    {% for r in restaurants %}
+    <div class="h-card">
+        <div class="h-card-img">
+
+            <img src="" alt="" >
+        </div>
+        <div class="resto">
+            <h3 class="resto-name">{{ r.nom }}</h3>
+            <blockquote class="resto-type">
+                {{ r.fktypeResto.libelle }}
+            </blockquote>
+        </div>
+        <div class="description">
+            <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Praesentium reiciendis ipsa vero. Illum sequi mollitia quasi nulla,
+                distinctio cupiditate repellat hic dolorem alias. Explicabo fugiat quos unde earum?
+                Laborum, dolore. </p>
+        </div>
+        <div class="commande">
+            <a href="{{ path('_profiler_home') }}" class="btn-commande">Commander ici</a>
+        </div>
+    </div>
+</div>
+
+
+
+{% endfor %}
 {% endblock %}
