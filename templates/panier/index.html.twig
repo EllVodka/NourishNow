@@ -11,7 +11,7 @@
 
 {{ dump(dataPanier) }}
 
-{% if dataPanier | length > 1 %}
+{% if dataPanier | length > 0 %}
 <a href="{{path('app_panier_delete_all')}}">Supprimer le panier</a>
 {% endif %}
 
