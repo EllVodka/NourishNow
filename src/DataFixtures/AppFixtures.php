@@ -123,7 +123,16 @@ class AppFixtures extends Fixture
         $platMexicain->setDescription("Super pate bolo qui pique");
         $platMexicain->setTarif(11.95);
         $platMexicain->setFkRestaurant($restaurantMexicain);
+        $platMexicain->setDisponibilite(true);
         $manager->persist($platMexicain);
+
+        $platKebab = new Plat();
+        $platKebab->setLibelle("Kebab sauce hanibal");
+        $platKebab->setDescription("Le meilleur kebab d'europe, logique c'est hammid qui le fait");
+        $platKebab->setTarif(5.65);
+        $platKebab->setFkRestaurant($restaurantMexicain);
+        $platKebab->setDisponibilite(false);
+        $manager->persist($platKebab);
 
         $statusAttente = new Status();
         $statusAttente->setLibelle("En attente");
