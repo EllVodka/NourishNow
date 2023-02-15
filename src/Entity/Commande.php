@@ -29,18 +29,14 @@ class Commande
      */
     private $destination;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity=personne::class, inversedBy="commandes")
+     * @ORM\ManyToOne(targetEntity=Personne::class, inversedBy="commandes")
      */
     private $fk_livreur;
 
     /**
-     * @ORM\ManyToOne(targetEntity=personne::class, inversedBy="commandes")
+     * @ORM\ManyToOne(targetEntity=Personne::class, inversedBy="commandes")
      */
     private $fk_client;
 
@@ -48,6 +44,11 @@ class Commande
      * @ORM\OneToMany(targetEntity=DetailCommande::class, mappedBy="fk_commande")
      */
     private $detailCommandes;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Status::class, inversedBy="commandes")
+     */
+    private $fk_status;
 
     public function __construct()
     {
@@ -83,36 +84,25 @@ class Commande
         return $this;
     }
 
-    public function getStatus(): ?string
-    {
-        return $this->status;
-    }
 
-    public function setStatus(?string $status): self
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    public function getFkLivreur(): ?personne
+    public function getFkLivreur(): ?Personne
     {
         return $this->fk_livreur;
     }
 
-    public function setFkLivreur(?personne $fk_livreur): self
+    public function setFkLivreur(?Personne $fk_livreur): self
     {
         $this->fk_livreur = $fk_livreur;
 
         return $this;
     }
 
-    public function getFkClient(): ?personne
+    public function getFkClient(): ?Personne
     {
         return $this->fk_client;
     }
 
-    public function setFkClient(?personne $fk_client): self
+    public function setFkClient(?Personne $fk_client): self
     {
         $this->fk_client = $fk_client;
 
@@ -145,6 +135,18 @@ class Commande
                 $detailCommande->setFkCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFkStatus(): ?Status
+    {
+        return $this->fk_status;
+    }
+
+    public function setFkStatus(?Status $fk_status): self
+    {
+        $this->fk_status = $fk_status;
 
         return $this;
     }

@@ -15,7 +15,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/plat")
- * @IsGranted("ROLE_RESTAURATEUR")
  */
 class PlatController extends AbstractController
 {

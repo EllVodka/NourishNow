@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+{% block title %}{% endblock %}
+
+{% block body %}
+{{ form_start(commandeForm) }}
+{{ form_row(commandeForm.fk_status) }}
+{{ form_row(commandeForm.Ajouter) }}
+{{ form_end(commandeForm) }}
+{% endblock %}

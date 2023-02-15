@@ -39,28 +39,65 @@ class CommandeRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Commande[] Returns an array of Commande objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findCommandeByRestoId(int $restoId)
+    {
+        return $this->createQueryBuilder('c')
+            ->addselect('p')
+            ->addselect('c')
+            ->addSelect('dc')
+            ->addSelect('s')
+            ->addSelect('r')
+            ->join('c.detailCommandes', 'dc')
+            ->join('c.fk_status','s')
+            ->join('dc.fk_plat', 'p')
+            ->join('p.fk_restaurant', 'r')
+            ->where('r.id = :idResto')
+            ->orderBy('c.date ', 'DESC')
+            ->setParameter('idResto', $restoId)
+            ->getQuery()
+            ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Commande
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findCommande(int $id)
+    {
+        return $this->createQueryBuilder('c')
+            ->addselect('p')
+            ->addselect('dc')
+            ->addSelect('s')
+            ->addSelect('r')
+            ->join('c.detailCommandes', 'dc')
+            ->join('c.fk_status','s')
+            ->join('dc.fk_plat', 'p')
+            ->join('p.fk_restaurant', 'r')
+            ->where('c.id = :id')
+            ->orderBy('c.date ', 'DESC')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    //    /**
+    //     * @return Commande[] Returns an array of Commande objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('c')
+    //            ->andWhere('c.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('c.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Commande
+    //    {
+    //        return $this->createQueryBuilder('c')
+    //            ->andWhere('c.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }
