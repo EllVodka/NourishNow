@@ -50,7 +50,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         }
 
         // TODO rajouter une route
-        return new RedirectResponse($this->urlGenerator->generate('app_restaurateur_add'));
+        return new RedirectResponse($this->urlGenerator->generate('app_client'));
     }
 
     protected function getLoginUrl(Request $request): string

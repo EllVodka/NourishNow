@@ -29,10 +29,6 @@ class Commande
      */
     private $destination;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $status;
 
     /**
      * @ORM\ManyToOne(targetEntity=Personne::class, inversedBy="commandes")
@@ -48,6 +44,11 @@ class Commande
      * @ORM\OneToMany(targetEntity=DetailCommande::class, mappedBy="fk_commande")
      */
     private $detailCommandes;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Status::class, inversedBy="commandes")
+     */
+    private $fk_status;
 
     public function __construct()
     {
@@ -83,17 +84,6 @@ class Commande
         return $this;
     }
 
-    public function getStatus(): ?string
-    {
-        return $this->status;
-    }
-
-    public function setStatus(?string $status): self
-    {
-        $this->status = $status;
-
-        return $this;
-    }
 
     public function getFkLivreur(): ?Personne
     {
@@ -145,6 +135,18 @@ class Commande
                 $detailCommande->setFkCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFkStatus(): ?Status
+    {
+        return $this->fk_status;
+    }
+
+    public function setFkStatus(?Status $fk_status): self
+    {
+        $this->fk_status = $fk_status;
 
         return $this;
     }
