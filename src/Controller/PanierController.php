@@ -162,6 +162,8 @@ class PanierController extends AbstractController
             $detailCommandeRepository->add($detailCommande,true);
         }
 
+        $session->remove("panier");
+
         return $this->render("panier/reussi.html.twig");
     }
 }
