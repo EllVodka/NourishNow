@@ -1,16 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello ClientController!{% endblock %}
-
+{% block ville %}
+<a class="dropdown-ville no-text-decoration" href="{{ path('app_panier') }}"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a>
+{% endblock ville %}
 {% block body %}
 <link rel="stylesheet" href="/styles/client.css">
-{% for p in plats %}
-<div class="plat-card">
-    <h2>{{ p.libelle }}</h2>
-    <p>{{ p.description }} </p>
-    <p>{{ p.tarif }} </p>
-    <a href="{{ path('app_panier_add',{'id':p.id,'page':1}) }}">+</a>
+
+<div class="page-plat">
+    {% for p in plats %}
+    <div class="plat-card">
+        <div class="plat-card-head">
+            <h2>{{ p.libelle }}</h2>
+            <div class="card-ajout-btn">
+                <a href="{{ path('app_panier_add',{'id':p.id,'page':1}) }}"><i class="fa-solid fa-plus fa-2xl"></i></a>
+            </div>
+    
+        </div>
+        <p class="description-plat">{{ p.description }} </p>
+        <p>{{ p.tarif }} € </p>
+    </div>
+    {% endfor %}
+    
 </div>
-{% endfor %}
-<a href="{{ path('app_panier') }}">Voir le panier</a>
+
 {% endblock %}

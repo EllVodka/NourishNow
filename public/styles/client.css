@@ -37,3 +37,49 @@
     text-align: center;
 }
 
+.page-plat{
+    margin: 0px 10%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 1%;
+    grid-row-gap: 1%;
+    
+}
+
+.plat-card{
+    background-color: var(--transparent-blue);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    color: var(--isabeline);
+    margin-bottom: 1%;
+    padding-left: 1%;
+}
+
+.plat-card-head{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.no-text-decoration{
+    text-decoration: none;
+    color: var(--isabeline);
+}
+
+.description-plat{
+    align-self: center;
+}
+
+.card-ajout-btn{
+    border: thin solid var(--isabeline);
+    border-style: none  none solid solid  ;
+    align-self: flex-start;
+    padding:1%;
+    
+}
+
+.card-ajout-btn a{   
+    color: var(--isabeline);
+}

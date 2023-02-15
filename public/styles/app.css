@@ -38,7 +38,7 @@ body {
     flex-direction: row;
     align-self: center;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     height: 50%;
     width: 10%;
 }
@@ -48,12 +48,14 @@ body {
     display: flex;
     align-items: center;
     padding-left: 5%;
+    padding-right: 10%;
     border-top-left-radius: 20px;
     border-end-start-radius: 20px;
 }
 .btn-register{
     height: 100%;
     padding-right: 5%;
+    padding-left: 10%;
     display: flex;
     align-items: center;
     border-top-right-radius: 20px;

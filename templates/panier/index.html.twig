@@ -36,16 +36,18 @@
 
 {% endfor %}
 
+{% if dataPanier | length > 0 %}
 <p>Prix total TTC : {{ total }}</p>
+{% endif %}
 
-{% if dataPanier | length  > 0 %}
+{% if dataPanier | length > 0 %}
 <a href="{{ path('app_client_view_resto',{'restaurant':dataPanier[0].plat.fkrestaurant.id}) }}">Continuer les
     commande</a>
-    <a href="{{path('app_panier_confirm')}}">Acheter</a>
+<a href="{{path('app_panier_confirm')}}">Acheter</a>
 {% else %}
 <a href="{{ path('app_client') }}">Continuer les
     commande</a>
-    
+
 {% endif %}
 
 {% endblock %}
