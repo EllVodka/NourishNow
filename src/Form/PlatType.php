@@ -16,6 +16,7 @@ class PlatType extends AbstractType
             ->add('libelle')
             ->add('description')
             ->add('tarif')
+            ->add('Disponibilite')
             ->add('Ajouter', SubmitType::class,[
                 "label"=>"Continuer",
             ])

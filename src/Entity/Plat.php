@@ -44,6 +44,11 @@ class Plat
      */
     private $detailCommandes;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $Disponibilite;
+
     public function __construct()
     {
         $this->detailCommandes = new ArrayCollection();
@@ -128,6 +133,18 @@ class Plat
                 $detailCommande->setFkPlat(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isDisponibilite(): ?bool
+    {
+        return $this->Disponibilite;
+    }
+
+    public function setDisponibilite(?bool $Disponibilite): self
+    {
+        $this->Disponibilite = $Disponibilite;
 
         return $this;
     }
