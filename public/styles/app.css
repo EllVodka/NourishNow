@@ -23,6 +23,15 @@ body {
     margin: 0;
 }
 
+.blue-hover:hover{
+    border: 3px solid var(--marian-blue);
+}
+
+.isabeline-hover:hover{
+    border: 3px solid var(--isabeline);
+}
+
+
 .navbar {
     display: flex;
     justify-content: space-around;
@@ -51,6 +60,9 @@ body {
     padding-right: 10%;
     border-top-left-radius: 20px;
     border-end-start-radius: 20px;
+}
+.connexion-btn a{
+    text-decoration: none;
 }
 .btn-register{
     height: 100%;

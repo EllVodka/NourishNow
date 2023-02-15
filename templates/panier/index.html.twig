@@ -3,51 +3,66 @@
 {% block title %}Hello ClientController!{% endblock %}
 
 {% block body %}
-<link rel="stylesheet" href="/styles/client.css">
+<link rel="stylesheet" href="/styles/panier.css">
 
-<section class="bg-light p-3">
-    <h1>Votre panier</h1>
-</section>
+<div class="page-cart">
 
-{{ dump(dataPanier) }}
+    <div class="page-cart-head">
+        {% if dataPanier | length > 0 %}
+        <a class="btn-head-cart blue-hover"
+            href="{{ path('app_client_view_resto',{'restaurant':dataPanier[0].plat.fkrestaurant.id}) }}">Continuer les
+            commande</a>
+        {% else %}
+        <a class="btn-head-cart blue-hover" href="{{ path('app_client') }}">Continuer les
+            commande</a>
+        {% endif %}
+        {% if dataPanier | length > 0 %}
+        <a class="btn-head-cart blue-hover" href="{{path('app_panier_delete_all')}}">Supprimer le panier</a>
+        {% endif %}
 
-{% if dataPanier | length > 0 %}
-<a href="{{path('app_panier_delete_all')}}">Supprimer le panier</a>
-{% endif %}
 
-{% for dp in dataPanier %}
+    </div>
 
-<div>
-    <p>quatité : {{ dp.quantite }}</p>
-    <p>Plat : {{ dp.plat.libelle }}</p>
-    <p>total HT : {{ dp.quantite * dp.plat.tarif }}</p>
-    <a href="{{ path('app_panier_add',{
-        'id':dp.plat.id,
-        'page':2}) }}">+</a>
-    <a href="{{ path('app_panier_remove',{
-            'id':dp.plat.id}) }}">-</a>
-    <a href="{{ path('app_panier_delete',{
-            'id':dp.plat.id}) }}">X</a>
+    {% for dp in dataPanier %}
+
+    <div class="cart-card">
+        <div class="cart-card-head">
+
+            <h2>{{ dp.plat.libelle }}</h2>
+            <a class="head-cross" href="{{ path('app_panier_delete',{
+                'id':dp.plat.id}) }}"><i class="fa-solid fa-xmark fa-2xl"></i></a>
+        </div>
+        <div class="group-quantite">
+            <h3>Quantité : </h3>
+
+            <a class="quantite-btn isabeline-hover" href="{{ path('app_panier_remove',{
+                'id':dp.plat.id}) }}"><i class="fa-solid fa-minus fa-lg"></i></a>
+            <p class="quantite-text">{{ dp.quantite }}</p>
+
+            <a class="quantite-btn isabeline-hover" href="{{ path('app_panier_add',{
+                    'id':dp.plat.id,
+                    'page':2}) }}"><i class="fa-solid fa-plus fa-lg"></i></a>
+        </div>
+        <p class="left">{{ dp.quantite * dp.plat.tarif }} €</p>
+
+    </div>
+
+    {% else %}
+
+    <p>Votre panier est vide</p>
+
+    {% endfor %}
+
+
+
+    {% if dataPanier | length > 0 %}
+    <p class="total-price">Prix total : {{ total }} €</p>
+    {% endif %}
+
+    {% if dataPanier | length > 0 %}
+
+    <a class="confirm-cart blue-hover" href="{{path('app_panier_confirm')}}">Valider le panier</a>
+    {% endif %}
 </div>
-
-{% else %}
-
-<p>Votre panier est vide</p>
-
-{% endfor %}
-
-{% if dataPanier | length > 0 %}
-<p>Prix total TTC : {{ total }}</p>
-{% endif %}
-
-{% if dataPanier | length > 0 %}
-<a href="{{ path('app_client_view_resto',{'restaurant':dataPanier[0].plat.fkrestaurant.id}) }}">Continuer les
-    commande</a>
-<a href="{{path('app_panier_confirm')}}">Acheter</a>
-{% else %}
-<a href="{{ path('app_client') }}">Continuer les
-    commande</a>
-
-{% endif %}
 
 {% endblock %}
