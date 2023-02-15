@@ -49,8 +49,17 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // TODO rajouter une route
-        return new RedirectResponse($this->urlGenerator->generate('app_client'));
+        $roles = $token->getRoleNames();
+
+        $redirection = new RedirectResponse($this->urlGenerator->generate('app_client'));
+
+        if (in_array("ROLE_LIVREUR", $roles, true)) {
+            $redirection= new RedirectResponse($this->urlGenerator->generate('app_livreur'));
+        } else if (in_array("ROLE_RESTAURATEUR", $roles, true)) {
+            $redirection= new RedirectResponse($this->urlGenerator->generate('app_restaurateur'));
+        }
+
+        return $redirection;
     }
 
     protected function getLoginUrl(Request $request): string

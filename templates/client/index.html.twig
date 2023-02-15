@@ -1,6 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ClientController!{% endblock %}
+{% block title %}Choisisez un restaurant{% endblock %}
+
+{% block ville %}
+
+<div class="dropdown-ville">
+    <select name="" id="dropdown-ville">
+        <option value="">Choissisez une ville</option>
+        <option value="0">Toutes</option>
+        {% for v in villes %}
+        <option value="{{ v.id }}">
+                {{v.libelle}}
+        </option>
+
+        {% endfor %}
+    </select>
+</div>
+<script src="/js/script.js"></script>
+{% endblock ville %}
 
 {% block body %}
 <link rel="stylesheet" href="/styles/client.css">
@@ -8,8 +25,7 @@
     {% for r in restaurants %}
     <div class="h-card">
         <div class="h-card-img">
-
-            <img src="" alt="" >
+            <img src="" alt="">
         </div>
         <div class="resto">
             <h3 class="resto-name">{{ r.nom }}</h3>
@@ -28,7 +44,7 @@
         </div>
     </div>
 
-    
+
 </div>
 
 
