@@ -22,11 +22,19 @@ class ClientController extends AbstractController
      */
     public function index(RestaurantRepository $restaurantRepository): Response
     {
+        $restaurants = new Restaurant();
+
+        if ($this->getUser() == null) {
+            $restaurants = $restaurantRepository->findAll();
+        } else {
+            $restaurants = $restaurantRepository->findRestaurant(
+                $this->getUser()->getPersonne()->getFkVille()->getId()
+            );
+        }
+
 
         return $this->render('client/index.html.twig', [
-            'restaurants' => $restaurantRepository->findRestaurant(
-                $this->getUser()->getPersonne()->getFkVille()->getId()
-            ),
+            'restaurants' => $restaurants,
         ]);
     }
 
@@ -41,5 +49,4 @@ class ClientController extends AbstractController
             'plats' => $plats,
         ]);
     }
- 
 }
