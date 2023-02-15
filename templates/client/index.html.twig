@@ -1,17 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ClientController!{% endblock %}
+{% block title %}Choisisez un restaurant{% endblock %}
 
 {% block ville %}
-<script>
-    const dropdown = document.getElementById('dropdown-ville');
 
-    dropdown.addEventListener('change', () => {
-        window.path = "{{ path('app_client_ville', {'ville': " + dropdown.value + "}) }}";
-    });
-</script>
 <div class="dropdown-ville">
-    <select name="" id="">
+    <select name="" id="dropdown-ville">
+        <option value="">Choissisez une ville</option>
+        <option value="0">Toutes</option>
         {% for v in villes %}
         <option value="{{ v.id }}">
                 {{v.libelle}}
@@ -20,6 +16,7 @@
         {% endfor %}
     </select>
 </div>
+<script src="/js/script.js"></script>
 {% endblock ville %}
 
 {% block body %}

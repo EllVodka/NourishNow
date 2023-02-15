@@ -40,18 +40,19 @@ class ClientController extends AbstractController
         ]);
     }
     /**
-     * @Route("/ville/{ville}", name="app_client_ville")
+     * @Route("/ville/{ville<\d+>}", name="app_client_ville")
      */
-    public function indexVille(Ville $ville, RestaurantRepository $restaurantRepository): Response
+    public function indexVille(Ville $ville, RestaurantRepository $restaurantRepository,VilleRepository $villeRepository): Response
     {
         $restaurants = $restaurantRepository->findRestaurant($ville->getId());
         return $this->render('client/index.html.twig', [
             'restaurants' => $restaurants,
+            'villes' => $villeRepository->findAll()
         ]);
     }
 
     /**
-     * @Route("/{restaurant}", name="app_client_view_resto")
+     * @Route("/{restaurant<\d+>}", name="app_client_view_resto")
      */
     public function viewResto(Restaurant $restaurant, PlatRepository $platRepository): Response
     {
