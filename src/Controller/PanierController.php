@@ -2,17 +2,24 @@
 
 namespace App\Controller;
 
+use App\Entity\Commande;
+use App\Entity\DetailCommande;
 use App\Entity\Plat;
 use App\Entity\Restaurant;
+use App\Repository\CommandeRepository;
+use App\Repository\DetailCommandeRepository;
 use App\Repository\PlatRepository;
+use App\Repository\StatusRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
 /**
  * @Route("/panier")
+ * @IsGranted("ROLE_CLIENT")
  */
 
 class PanierController extends AbstractController
@@ -99,11 +106,11 @@ class PanierController extends AbstractController
     /**
      * @Route("/delete/{id}", name="app_panier_delete")
      */
-    public function delete(Plat $product, SessionInterface $session)
+    public function delete(Plat $plat, SessionInterface $session)
     {
         // On récupère le panier actuel
         $panier = $session->get("panier", []);
-        $id = $product->getId();
+        $id = $plat->getId();
 
         if (!empty($panier[$id])) {
             unset($panier[$id]);
@@ -128,10 +135,35 @@ class PanierController extends AbstractController
     /**
      * @Route("/confirm", name="app_panier_confirm")
      */
-    public function confirm(SessionInterface $session)
-    {
+    public function confirm(
+        SessionInterface $session,
+        CommandeRepository $commandeRepository,
+        DetailCommandeRepository $detailCommandeRepository,
+        StatusRepository $statusRepository,
+        PlatRepository $platRepository
+    ) {
         $panier = $session->get("panier", []);
 
-        return $this->redirectToRoute("app_panier");
+        $commande = new Commande();
+        $time = new \DateTime();
+        $commande->setDate($time);
+        $commande->setDestination($this->getUser()->getPersonne()->getAdresse());
+
+        $commande->setFkClient($this->getUser()->getPersonne());
+        $commande->setFkStatus($statusRepository->find(1));
+        $commandeRepository->add($commande, true);
+
+        foreach ($panier as $id => $quantite) {
+            $plat = $platRepository->find($id);
+            $detailCommande = new DetailCommande();
+            $detailCommande->setFkPlat($plat);
+            $detailCommande->setQuantite($quantite);
+            $detailCommande->setFkCommande($commande);
+            $detailCommandeRepository->add($detailCommande,true);
+        }
+
+        $session->remove("panier");
+
+        return $this->render("panier/reussi.html.twig");
     }
 }

@@ -31,7 +31,7 @@ class RestaurateurController extends AbstractController
     }
 
     /**
-     * @Route("/add", name="app_restaurateur_add")*
+     * @Route("/add", name="app_restaurateur_add")
      */
     public function add(PersonneRepository $personneRepository, ManagerRegistry $doctrine, Request $request): Response
     {
