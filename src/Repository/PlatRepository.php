@@ -39,6 +39,18 @@ class PlatRepository extends ServiceEntityRepository
         }
     }
 
+    public function findPlat(int $idResto)
+    {
+        return $this->createQueryBuilder('p')
+            ->addSelect('r')
+            ->join('p.fk_restaurant', 'r')
+            ->where('r.id = :id')
+            ->setParameter('id',$idResto)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 //    /**
 //     * @return Plat[] Returns an array of Plat objects
 //     */

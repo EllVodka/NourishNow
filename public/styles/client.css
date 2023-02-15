@@ -1,0 +1,38 @@
+.page-client{
+    margin: 0px 1%;
+}
+
+.h-card {
+    background-color: var(--transparent-blue);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: var(--isabeline);
+    border-radius: 20px;
+}
+.h-card-img{
+    margin: 0.4% 0px;
+    height: auto;
+    width: 10%;
+    background-color: black;
+    border-radius: 20px;
+}
+
+.description {
+    width: 30%;
+}
+
+.commande {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 10%;
+}
+
+.btn-commande {
+    border-radius: 20px;
+    padding: 7%;
+    background-color: var(--isabeline);
+    color: var(--marian-blue);
+    text-align: center;
+}
