@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<div>
+    {% for c in commande %}
+
+        <p>Numéro de commande : {{ c.id}}</p>
+        <p>Adresse du restaurant : {{c.detailCommandes[0].fkplat.fkrestaurant.lieu}}
+        <p>Nom du restaurant : {{c.detailCommandes[0].fkplat.fkrestaurant.nom}}
+        <br><br>
+        <p>Adresse de livraison : {{c.fkclient.Adresse}}
+        <p>Ville de livraison : {{c.fkclient.fkville.libelle}}
+        <p>Nom : {{ c.fkclient.nom}}</p>
+        <p>Prenom : {{ c.fkclient.prenom}}</p>
+        <p>Heure livraison : {{ c.date | date('H:i') }}</p>
+  
+
+    
+</div>
+
+<div>
+    <h1> Détail de la commande </h1>
+
+        {% for dc in c.detailCommandes %}
+        <p>Plat : {{dc.fkplat.libelle}}</p>
+        <p>Quantite : {{dc.Quantite}}</p>
+        {% endfor %}
+</div>
+
+<a href="{{path( 'app_edit_commande_status',{'commande' : c.id} ) }}">Valider la livraison</a>
+
+{% endfor %}
+{% endblock %}

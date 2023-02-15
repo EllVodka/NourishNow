@@ -55,6 +55,11 @@ class Commande
         $this->detailCommandes = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->destination;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
