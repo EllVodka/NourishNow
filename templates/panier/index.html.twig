@@ -9,7 +9,9 @@
     <h1>Votre panier</h1>
 </section>
 
-{% if dataPanier > 1 %}
+{{ dump(dataPanier) }}
+
+{% if dataPanier | length > 1 %}
 <a href="{{path('app_panier_delete_all')}}">Supprimer le panier</a>
 {% endif %}
 
@@ -36,12 +38,14 @@
 
 <p>Prix total TTC : {{ total }}</p>
 
-{% if dataPanier == 0 %}
+{% if dataPanier | length  > 0 %}
 <a href="{{ path('app_client_view_resto',{'restaurant':dataPanier[0].plat.fkrestaurant.id}) }}">Continuer les
     commande</a>
+    <a href="{{path('app_panier_confirm')}}">Acheter</a>
 {% else %}
 <a href="{{ path('app_client') }}">Continuer les
     commande</a>
+    
 {% endif %}
 
 {% endblock %}
