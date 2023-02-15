@@ -72,3 +72,15 @@ body {
 .navbar-image {
     background-color: var(--lavender);
 }
+
+.dropdown-ville{
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-ville select{
+    height: 40%;
+    padding: 0px 7%;
+    font-size: 16px;
+    border-radius: 20px;
+}

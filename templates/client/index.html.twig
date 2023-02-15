@@ -3,7 +3,23 @@
 {% block title %}Hello ClientController!{% endblock %}
 
 {% block ville %}
-<p>zizi</p>
+<script>
+    const dropdown = document.getElementById('dropdown-ville');
+
+    dropdown.addEventListener('change', () => {
+        window.path = "{{ path('app_client_ville', {'ville': " + dropdown.value + "}) }}";
+    });
+</script>
+<div class="dropdown-ville">
+    <select name="" id="">
+        {% for v in villes %}
+        <option value="{{ v.id }}">
+                {{v.libelle}}
+        </option>
+
+        {% endfor %}
+    </select>
+</div>
 {% endblock ville %}
 
 {% block body %}
@@ -12,8 +28,7 @@
     {% for r in restaurants %}
     <div class="h-card">
         <div class="h-card-img">
-
-            <img src="" alt="" >
+            <img src="" alt="">
         </div>
         <div class="resto">
             <h3 class="resto-name">{{ r.nom }}</h3>
@@ -32,7 +47,7 @@
         </div>
     </div>
 
-    
+
 </div>
 
 

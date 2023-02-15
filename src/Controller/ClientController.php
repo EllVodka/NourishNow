@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Restaurant;
+use App\Entity\Ville;
 use App\Repository\PlatRepository;
 use App\Repository\RestaurantRepository;
+use App\Repository\VilleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -20,7 +22,7 @@ class ClientController extends AbstractController
     /**
      * @Route("/", name="app_client")
      */
-    public function index(RestaurantRepository $restaurantRepository): Response
+    public function index(RestaurantRepository $restaurantRepository,VilleRepository $villeRepository): Response
     {
         $restaurants = new Restaurant();
 
@@ -32,7 +34,17 @@ class ClientController extends AbstractController
             );
         }
 
-
+        return $this->render('client/index.html.twig', [
+            'restaurants' => $restaurants,
+            'villes' => $villeRepository->findAll()
+        ]);
+    }
+    /**
+     * @Route("/ville/{ville}", name="app_client_ville")
+     */
+    public function indexVille(Ville $ville, RestaurantRepository $restaurantRepository): Response
+    {
+        $restaurants = $restaurantRepository->findRestaurant($ville->getId());
         return $this->render('client/index.html.twig', [
             'restaurants' => $restaurants,
         ]);
