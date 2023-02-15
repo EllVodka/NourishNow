@@ -40,21 +40,6 @@ class DetailCommandeRepository extends ServiceEntityRepository
         }
     }
 
-    public function findCommandeByRestoId(int $restoId)
-    {
-        return $this->createQueryBuilder('dc')
-            ->addselect('p')
-            ->addselect('c')
-            ->join('dc.fk_commande', 'c')
-            ->join('dc.fk_plat', 'p')
-            ->join('p.fk_restaurant', 'r')
-            ->where('r.id = :idResto')
-            ->orderBy('c.date ', 'DESC')
-            ->setParameter('idResto', $restoId)
-            ->getQuery()
-            ->getResult();
-    }
-
     //    /**
     //     * @return DetailCommande[] Returns an array of DetailCommande objects
     //     */

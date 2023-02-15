@@ -22,16 +22,18 @@ class CommandeController extends AbstractController
 {
     /**
      * @Route("/{idResto}", name="app_commande")
+     * @IsGranted("ROLE_RESTAURATEUR")
      */
-    public function viewByRestoId(int $idResto, DetailCommandeRepository $detailCommandeRepository): Response
+    public function viewByRestoId(int $idResto, CommandeRepository $commandeRepository): Response
     {
         return $this->render('commande/index.html.twig', [
-            'commandes' => $detailCommandeRepository->findCommandeByRestoId($idResto),
+            'commandes' => $commandeRepository->findCommandeByRestoId($idResto),
         ]);
     }
 
     /**
      * @Route("/{idResto<\d+>}/{id<\d+>}", name="app_commande_view")
+     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function view(int $id, CommandeRepository $commandeRepository): Response
     {
@@ -42,6 +44,7 @@ class CommandeController extends AbstractController
 
     /**
      * @Route("/update-status/{commande}", name="app_commande_update_status")
+     * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function updateStatus(Commande $commande,Request $request, CommandeRepository $commandeRepository): Response
     {

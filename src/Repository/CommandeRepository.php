@@ -39,6 +39,25 @@ class CommandeRepository extends ServiceEntityRepository
         }
     }
 
+    public function findCommandeByRestoId(int $restoId)
+    {
+        return $this->createQueryBuilder('c')
+            ->addselect('p')
+            ->addselect('c')
+            ->addSelect('dc')
+            ->addSelect('s')
+            ->addSelect('r')
+            ->join('c.detailCommandes', 'dc')
+            ->join('c.fk_status','s')
+            ->join('dc.fk_plat', 'p')
+            ->join('p.fk_restaurant', 'r')
+            ->where('r.id = :idResto')
+            ->orderBy('c.date ', 'DESC')
+            ->setParameter('idResto', $restoId)
+            ->getQuery()
+            ->getResult();
+    }
+
     public function findCommande(int $id)
     {
         return $this->createQueryBuilder('c')

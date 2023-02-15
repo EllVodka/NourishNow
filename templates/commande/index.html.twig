@@ -4,4 +4,13 @@
 
 {% block body %}
     {{ dump(commandes) }}
+    {% for c in commandes %}
+    <div>
+        <p>{{ c.detailCommandes[0].fkplat.fkrestaurant.nom }}</p>
+        <p>Status : {{ c.fkstatus.libelle }}</p>
+        <p>Heure livraison : {{ c.date | date('H:i') }}</p>
+        <a href="{{path( 'app_commande_view',{'idResto':c.detailCommandes[0].fkplat.fkrestaurant.id,'id':c.id} ) }}">voir la commande</a>
+    </div>
+        
+    {% endfor %}
 {% endblock %}
