@@ -20,6 +20,8 @@
 <div class="example-wrapper">
     {{ dump(restaurant) }}
 
+    <a href="{{ path('app_commande',{'idResto':restaurant.id}) }}">Voir mes commande encour</a>
+
 
 </div>
 {% endblock %}
