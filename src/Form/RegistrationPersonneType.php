@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Personne;
+use App\Entity\Ville;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -18,20 +20,24 @@ class RegistrationPersonneType extends AbstractType
             ->add('prenom')
             ->add('email')
             ->add('telephone')
-            ->add('role',ChoiceType::class,[
-                "label"=>"M'inscrire en tant que :",
-                "required"=> true,
+            ->add('role', ChoiceType::class, [
+                "label" => "M'inscrire en tant que :",
+                "required" => true,
                 'mapped' => false,
-                'choices'=>[
-                    "Client"=>"Client",
-                    "Livreur"=>"Livreur",
-                    "Restaurateur"=>"Restaurateur",
+                'choices' => [
+                    "Client" => "Client",
+                    "Livreur" => "Livreur",
+                    "Restaurateur" => "Restaurateur",
                 ],
             ])
             ->add('adresse')
+            ->add('fk_ville',EntityType::class,[
+                "class"=>Ville::class,
+                "label"=>"Ville"
+            ])
             ->add('vehicule')
-            ->add('Ajouter', SubmitType::class,[
-                "label"=>"S'inscrire",
+            ->add('Ajouter', SubmitType::class, [
+                "label" => "S'inscrire",
             ]);
     }
 

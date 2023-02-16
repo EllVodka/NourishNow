@@ -39,7 +39,13 @@
         {{ form_widget(formPersonne.adresse) }}
     </div>
 
-    <div class="register-input seven" id="livreur">
+    <div class="register-input seven">
+        {{ form_label(formPersonne.fk_ville) }}
+        {{ form_widget(formPersonne.fk_ville) }}
+    </div>
+
+
+    <div class="register-input eight" id="livreur">
         {{ form_label(formPersonne.vehicule) }}
         {{ form_widget(formPersonne.vehicule) }}
     </div>

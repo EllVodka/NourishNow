@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Form\RegistrationPersonneType;
 use App\Repository\UserRepository;
+use App\Repository\VilleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,7 +43,7 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute(
                 'app_register_personne',
                 [
-                    "idUser" => $user->getId()
+                    "user" => $user->getId()
                 ]
             );
         }
@@ -55,11 +56,11 @@ class RegistrationController extends AbstractController
         );
     }
     /**
-     * @Route("/registerPersonne/{idUser}", name="app_register_personne")
+     * @Route("/registerPersonne/{user}", name="app_register_personne")
      */
-    public function registerPersonne(User $idUser, Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager): Response
+    public function registerPersonne(User $user, Request $request, VilleRepository $villeRepository, EntityManagerInterface $entityManager): Response
     {
-        $user = $userRepository->find($idUser);
+        $ville = $villeRepository->findAll();
         $personne = new Personne();
         $personne->setEmail($user->getEmail());
         $form = $this->createForm(RegistrationPersonneType::class, $personne);
