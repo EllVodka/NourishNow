@@ -1,0 +1,25 @@
+.page-commande {
+    padding: 0px 10%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 25px;
+    grid-row-gap: 19px;
+}
+
+.card-commande {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--transparent-blue);
+    color: var(--isabeline);
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 20px;
+    font-size: 18px;
+}
+.btn-see-commande{
+    text-decoration: none;
+    color: var(--isabeline);
+    margin-bottom: 5%;
+
+}
