@@ -75,6 +75,13 @@ class AppFixtures extends Fixture
         $userClient2->setRoles(["ROLE_CLIENT"]);
         $manager->persist($userClient2);
 
+        $userClient3 = new User();
+        $userClient3->setEmail("cli@clit.com");
+        $passwordClient3 = $this->hasher->hashPassword($userClient3, 'cli');
+        $userClient3->setPassword($passwordClient3);
+        $userClient3->setRoles(["ROLE_CLIENT"]);
+        $manager->persist($userClient3);
+
         // Création des users dans la table user \\
 
         // Création des secteurs dans la table secteut \\
@@ -175,6 +182,17 @@ class AppFixtures extends Fixture
         $personneClient2->setFkUser($userClient2);
         $personneClient2->setFkVille($sevran);
         $manager->persist($personneClient2);
+
+        $personneClient3 = new Personne();
+        $personneClient3->setNom("Cli");
+        $personneClient3->setPrenom("Clito");
+        $personneClient3->setEmail($userClient3->getEmail());
+        $personneClient3->setTelephone("0669472853");
+        $personneClient3->setAdresse("45 rue belluci");
+        $personneClient3->setVehicule(null);
+        $personneClient3->setFkUser($userClient3);
+        $personneClient3->setFkVille($anzin);
+        $manager->persist($personneClient3);
 
         // Création des utilisateurs dans la table personne \\
 
@@ -320,8 +338,8 @@ class AppFixtures extends Fixture
         $manager->persist($commandeSevran);
 
         $commandePasPrete = new Commande();
-        $commandePasPrete->setDestination($personneClient->getAdresse());
-        $commandePasPrete->setFkClient($personneClient);
+        $commandePasPrete->setDestination($personneClient3->getAdresse());
+        $commandePasPrete->setFkClient($personneClient3);
         $commandePasPrete->setFkStatus($statusAttente);
         $manager->persist($commandePasPrete);
 
