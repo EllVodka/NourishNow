@@ -24,7 +24,9 @@ class RestaurateurController extends AbstractController
      */
     public function index(RestaurantRepository $restaurantRepository): Response
     {
-        $restaurants = $restaurantRepository->findAll();
+        $id = $this->getUser()->getPersonne()->getId();
+        $restaurants = $restaurantRepository->findBy(array('fk_personne' => $id));
+        
         return $this->render('restaurateur/index.html.twig', [
             'restaurants' => $restaurants,
         ]);

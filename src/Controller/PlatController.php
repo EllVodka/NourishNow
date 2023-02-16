@@ -57,7 +57,7 @@ class PlatController extends AbstractController
             $manager->persist($plat);
             $manager->flush();
 
-            return $this->redirectToRoute('app_plat');
+            return $this->redirectToRoute('app_restaurateur_view',["id"=>$plat->getFkRestaurant()->getId()]);
         }
 
         return $this->render('plat/add.html.twig', [
@@ -76,7 +76,7 @@ class PlatController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $platRepository->add($plat,true);
 
-            return $this->redirectToRoute('app_plat_view',["id"=>$plat->getId()]);
+            return $this->redirectToRoute('app_restaurateur_view',["id"=>$plat->getFkRestaurant()->getId()]);
         }
 
         return $this->render('plat/edit.html.twig', [
