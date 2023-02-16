@@ -3,6 +3,32 @@
 {% block title %}Hello CommandeController!{% endblock %}
 
 {% block body %}
+<link rel="stylesheet" href="/styles/commande.css">
 {{ dump(commande) }}
+
+<div class="parent-view-commande">
+    <h3>Numéro de la commande</h3>
+    <h3>Plat</h3>
+    <h3>Quantité</h3>
+    <h3>Satut</h3>
+</div>
+{% for c in commande %}
+<div class="parent-view-commande">
+    <p>{{ c.id }}</p>
+    <div class="view-commande-libelle">
+        {% for dc in c.detailCommandes %}
+        <p>{{ dc.fkplat.libelle }}</p>
+        {% endfor %}
+    </div>
+    <div class="view-commande-libelle">
+        {% for dc in c.detailCommandes %}
+        <p>{{ dc.quantite }}</p>
+        {% endfor %}
+    </div>
+    <p>{{ c.fkstatus.libelle }}</p>
+
+</div>
+{% endfor %}
+
 <a href="{{ path('app_commande_update_status',{'commande':commande[0].id}) }}">mettre a jour le status</a>
 {% endblock %}

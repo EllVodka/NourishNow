@@ -17,9 +17,24 @@
     border-radius: 20px;
     font-size: 18px;
 }
-.btn-see-commande{
+
+.btn-see-commande {
     text-decoration: none;
     color: var(--isabeline);
     margin-bottom: 5%;
 
+}
+
+.parent-view-commande {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 25px;
+    grid-row-gap: 19px;
+    justify-items: center;
+}
+
+.view-commande-libelle{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
