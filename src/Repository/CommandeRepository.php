@@ -48,7 +48,7 @@ class CommandeRepository extends ServiceEntityRepository
             ->addSelect('s')
             ->addSelect('r')
             ->join('c.detailCommandes', 'dc')
-            ->join('c.fk_status','s')
+            ->join('c.fk_status', 's')
             ->join('dc.fk_plat', 'p')
             ->join('p.fk_restaurant', 'r')
             ->where('r.id = :idResto')
@@ -66,7 +66,7 @@ class CommandeRepository extends ServiceEntityRepository
             ->addSelect('s')
             ->addSelect('r')
             ->join('c.detailCommandes', 'dc')
-            ->join('c.fk_status','s')
+            ->join('c.fk_status', 's')
             ->join('dc.fk_plat', 'p')
             ->join('p.fk_restaurant', 'r')
             ->where('c.id = :id')
@@ -76,9 +76,27 @@ class CommandeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findCommandByStatusAndDate(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->addSelect('p')
+            ->addSelect('dc')
+            ->addSelect('s')
+            ->addSelect('r')
+            ->join('c.detailCommandes', 'dc')
+            ->join('c.fk_status', 's')
+            ->join('dc.fk_plat', 'p')
+            ->join('p.fk_restaurant', 'r')
+            ->where('c.date >= NOW()')
+            ->andWhere('c.fk_status = 8')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Commande[] Returns an array of Commande objects
     //     */
+    
     //    public function findByExampleField($value): array
     //    {
     //        return $this->createQueryBuilder('c')

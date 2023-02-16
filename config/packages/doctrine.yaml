@@ -13,6 +13,8 @@ doctrine:
             string_functions:
                 DAY: DoctrineExtensions\Query\Mysql\Day
                 NOW: DoctrineExtensions\Query\Mysql\Now
+                HOUR: DoctrineExtensions\Query\Mysql\Hour
+                MINUTE: DoctrineExtensions\Query\Mysql\Minute
         mappings:
             App:
                 is_bundle: false
