@@ -49,6 +49,11 @@ class Restaurant
      */
     private $plats;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
     public function __construct()
     {
         $this->plats = new ArrayCollection();
@@ -145,6 +150,18 @@ class Restaurant
                 $plat->setFkRestaurant(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }
