@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{{ dump(commande)}}
+{% for c in commande %}
+<div>
+    <p> {{ c.destination }} </p> 
+    <p> {{ c.date | date('j/m/y')}}
+    {% for dc in c.detailCommandes %}
+        <p> {{ dc.fkplat }} </p>
+        <p> {{ dc.quantite }} </p>
+        <p> {{ dc.fkplat.fkrestaurant.nom}}
+    {% endfor %}
+</div>
+
+{% endfor %}
+{% endblock %}
