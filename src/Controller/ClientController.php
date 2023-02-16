@@ -29,8 +29,8 @@ class ClientController extends AbstractController
         if ($this->getUser() == null) {
             $restaurants = $restaurantRepository->findAll();
         } else {
-            $restaurants = $restaurantRepository->findRestaurant(
-                $this->getUser()->getPersonne()->getFkVille()->getId()
+            $restaurants = $restaurantRepository->findRestaurantInSecteur(
+                $this->getUser()->getPersonne()->getFkVille()->getFkSecteur()->getId()
             );
         }
 

@@ -16,9 +16,9 @@
 
         <p>Nom : {{ c.fkclient.nom}}</p>
         <p>Prenom : {{ c.fkclient.prenom}}</p>
-        <p>Adresse de livraison : {{c.fkclient.Adresse}}
-        <p>Ville de livraison : {{c.fkclient.fkville.libelle}}
-        <p>Heure livraison : {{ c.date | date('H:i') }}</p>
+        <p>Ville de livraison : {{c.fkclient.fkville.libelle}} -- Adresse du restaurant {{c.detailcommandes[0].fkplat.fkrestaurant.lieu}}</p>
+        <p>Adresse de livraison : {{c.fkclient.Adresse}} -- Nom du restaurant {{c.detailcommandes[0].fkplat.fkrestaurant.nom}}</p>
+        <p>Heure livraison : {{ c.date | date("j/m H:i", "Europe/Paris") }}h</p>
 
         <a href="{{path( 'app_view_commande_take',{'id' : c.id} ) }}">Accepter la livraison</a>
 
