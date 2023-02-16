@@ -19,8 +19,11 @@
         <p>Adresse de livraison : {{c.fkclient.Adresse}}
         <p>Ville de livraison : {{c.fkclient.fkville.libelle}}
         <p>Heure livraison : {{ c.date | date('H:i') }}</p>
+
         <a href="{{path( 'app_view_commande_take',{'id' : c.id} ) }}">Accepter la livraison</a>
 
+    {% else %}
+    <h1>Il n'y a pas de commande prête pour le moment</h1>
     {% endfor %}
 </div>
 {% endblock %}
