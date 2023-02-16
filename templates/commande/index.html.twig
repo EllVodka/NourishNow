@@ -12,19 +12,39 @@
 {% endblock ville %}
 {% block body %}
 <link rel="stylesheet" href="/styles/commande.css">
+<h1> Commande à preparer </h1>
 <div class="page-commande">
     {% for c in commandes %}
+    {% if c.fkstatus.id < 5 %}
     <div class="card-commande">
         <p>{{ c.detailCommandes[0].fkplat.fkrestaurant.nom }}</p>
         <p>Status : {{ c.fkstatus.libelle }}</p>
-        <p>Heure livraison : {{ c.date | date('H:i') }}</p>
+        <p>Date de commande : {{ c.date | date("j/m H:i")}}</p>
         <a class="btn-see-commande"
             href="{{path( 'app_commande_view',{'idResto':c.detailCommandes[0].fkplat.fkrestaurant.id,'id':c.id} ) }}"><i
                 class="fa-solid fa-eye fa-xl"></i></a>
     </div>
+    {% endif %}
 
     {% else %}
     <h1>Vous n'avez aucune commande en cours</h1>
+    {% endfor %}
+</div>
+<h1> Commande déja livrer </h1>
+<div class="page-commande">
+    {% for c in commandes %}
+    {% if c.fkstatus.id == 5 %}
+    <div class="card-commande">
+        <p>{{ c.detailCommandes[0].fkplat.fkrestaurant.nom }}</p>
+        <p>Status : {{ c.fkstatus.libelle }}</p>
+        <p>Date de commande : {{ c.date | date("j/m H:i")}}</p>
+        <a class="btn-see-commande"
+            href="{{path( 'app_commande_view',{'idResto':c.detailCommandes[0].fkplat.fkrestaurant.id,'id':c.id} ) }}"><i
+                class="fa-solid fa-eye fa-xl"></i></a>
+    </div>
+    {% endif %}
+    {% else %}
+    <h1>Vous n'avez aucune commande déja livrer</h1>
     {% endfor %}
 </div>
 
