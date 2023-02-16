@@ -22,6 +22,15 @@ body {
     padding: 0;
     margin: 0;
 }
+.arrow-left{
+    
+    display: flex;
+    align-items: center;
+}
+.arrow-left a{
+    color: var(--isabeline);
+    text-decoration: none;
+}
 
 .blue-hover:hover{
     border: 3px solid var(--marian-blue);

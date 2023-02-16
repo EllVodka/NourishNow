@@ -2,6 +2,14 @@
 
 {% block title %}Hello CommandeController!{% endblock %}
 
+{% block ville %}
+<div class="arrow-left">
+
+    <a href="{{ path('app_restaurateur_view',{'id':commandes[0].detailCommandes[0].fkplat.fkrestaurant.id}) }}"><i
+            class="fa-solid fa-arrow-left fa-2xl"></i></a>
+</div>
+
+{% endblock ville %}
 {% block body %}
 <link rel="stylesheet" href="/styles/commande.css">
 <div class="page-commande">
@@ -10,7 +18,8 @@
         <p>{{ c.detailCommandes[0].fkplat.fkrestaurant.nom }}</p>
         <p>Status : {{ c.fkstatus.libelle }}</p>
         <p>Heure livraison : {{ c.date | date('H:i') }}</p>
-        <a class="btn-see-commande" href="{{path( 'app_commande_view',{'idResto':c.detailCommandes[0].fkplat.fkrestaurant.id,'id':c.id} ) }}"><i
+        <a class="btn-see-commande"
+            href="{{path( 'app_commande_view',{'idResto':c.detailCommandes[0].fkplat.fkrestaurant.id,'id':c.id} ) }}"><i
                 class="fa-solid fa-eye fa-xl"></i></a>
     </div>
 

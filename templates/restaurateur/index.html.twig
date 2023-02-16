@@ -16,17 +16,6 @@
         <a class="resto-card-btn" href="{{ path('app_restaurateur_edit',{'id':r.id}) }}">Modifier le resto</a>
         <a class="resto-card-btn" href="{{ path('app_restaurateur_view',{'id':r.id}) }}">Voir le resto</a>
     </div>
-    <div class="resto-card">
-        <div class="resto-card-img ">
-            <img src="" alt="">
-        </div>
-        <h2>
-            {{ r.nom }}
-        </h2>
-        <a class="resto-card-btn isabeline-hover" href="{{ path('app_restaurateur_edit',{'id':r.id}) }}">Modifier le resto</a>
-        <a class="resto-card-btn isabeline-hover" href="{{ path('app_restaurateur_view',{'id':r.id}) }}">Voir le resto</a>
-    </div>
-
     {% endfor %}
 
 </div>

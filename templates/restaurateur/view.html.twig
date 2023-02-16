@@ -1,7 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello RestaurateurController!{% endblock %}
+{% block ville %}
+<div class="arrow-left">
 
+    <a href="{{ path('app_restaurateur') }}"><i
+            class="fa-solid fa-arrow-left fa-2xl"></i></a>
+</div>
+
+{% endblock ville %}
 {% block body %}
 <link rel="stylesheet" href="/styles/restaurateur.css">
 
