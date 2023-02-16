@@ -92,7 +92,7 @@ class CommandeRepository extends ServiceEntityRepository
             ->join('r.fk_ville' , 'v')
             ->join('v.fk_secteur', 'sec')
             ->where('c.date >= NOW()')
-            ->andWhere('c.fk_status = 8')
+            ->andWhere('c.fk_status = 3')
             ->andWhere('sec.id = :idSecteur')
             ->setParameter('idSecteur', $idSecteur)
             ->getQuery()
