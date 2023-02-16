@@ -84,7 +84,7 @@ class AppFixtures extends Fixture
         $manager->persist($valMetroPol);
 
         $banlieueParis = new Secteur();
-        $valMetroPol->setLibelle("Banlieue Parisienne");
+        $banlieueParis->setLibelle("Banlieue Parisienne");
         $manager->persist($banlieueParis);
 
         // Création des secteurs dans la table secteut \\
