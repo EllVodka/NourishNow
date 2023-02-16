@@ -2,8 +2,21 @@
 {% block title %}{% endblock %}
 
 {% block body %}
+
+<link rel="stylesheet" href="/styles/commande.css">
 {{ form_start(commandeForm) }}
-{{ form_row(commandeForm.fk_status) }}
-{{ form_row(commandeForm.Ajouter) }}
+
+<div class="page-status-edit">
+
+    <div class="input-status">
+
+        {{ form_label(commandeForm.fk_status) }}
+        {{ form_widget(commandeForm.fk_status) }}
+    </div>
+    <div class="btn-status">
+        {{ form_widget(commandeForm.Ajouter) }}
+    </div>
+</div>
+
 {{ form_end(commandeForm) }}
 {% endblock %}
