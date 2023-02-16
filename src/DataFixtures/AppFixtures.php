@@ -257,7 +257,7 @@ class AppFixtures extends Fixture
         $manager->persist($platKebab);
 
         $platItalien = new Plat();
-        $platItalien->setLibelle("Pizza Ananas chèèvre miel au anchois");
+        $platItalien->setLibelle("Pizza Ananas chèvre miel au anchois");
         $platItalien->setDescription("Pizza de 15cm avec chèvre miel ananas et anchois");
         $platItalien->setTarif(17.50);
         $platItalien->setFkRestaurant($restaurantPizzeria);
@@ -315,7 +315,7 @@ class AppFixtures extends Fixture
 
         $commandeSevran = new Commande();
         $commandeSevran->setDestination($personneClient2->getAdresse());
-        $commandeSevran->setFkClient($personneClient);
+        $commandeSevran->setFkClient($personneClient2);
         $commandeSevran->setFkStatus($statusPrete);
         $manager->persist($commandeSevran);
 

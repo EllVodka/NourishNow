@@ -99,6 +99,23 @@ class CommandeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findAllCommandByClientId(int $id)
+    {
+        return $this->createQueryBuilder('c')
+            ->addSelect('cl')
+            ->addSelect('dc')
+            ->addSelect('p')
+            ->addSelect('r')
+            ->join('c.fk_client' , 'cl')
+            ->join('c.detailCommandes', 'dc')
+            ->join('dc.fk_plat' , 'p')
+            ->join('p.fk_restaurant' , 'r')
+            ->where('cl.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Commande[] Returns an array of Commande objects
     //     */

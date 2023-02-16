@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Restaurant;
 use App\Entity\Ville;
+use App\Repository\CommandeRepository;
+use App\Repository\PersonneRepository;
 use App\Repository\PlatRepository;
 use App\Repository\RestaurantRepository;
 use App\Repository\VilleRepository;
@@ -62,4 +64,18 @@ class ClientController extends AbstractController
             'plats' => $plats,
         ]);
     }
+
+    /**
+     * @Route("/suivi", name="app_client_view_suivi_commande")
+     */
+    public function viewSuiviCommande(CommandeRepository $commandeRepository): Response
+    {
+        $id = $this->getUser()->getPersonne()->getId();
+        $commande = $commandeRepository->findAllCommandByClientId($id);
+        return $this->render('client/suivi.html.twig', [
+            'commande' => $commande
+        ]);
+    }
+
+
 }
