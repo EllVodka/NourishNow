@@ -1,0 +1,90 @@
+.page-cart{
+    margin: 0px 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    row-gap: 3vh;
+}
+
+.page-cart-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-head-cart{
+    padding: 1.5% 2%;
+    background-color: var(--mimi-pink);
+    color: var(--marian-blue);
+    border-radius: 20px;
+    text-decoration: none;
+}
+.cart-card{
+    background-color: var(--transparent-blue);
+    color: var(--isabeline);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding:0px 2%;
+
+}
+
+.cart-card-head{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.head-cross{
+    text-decoration: none;
+    color: var(--isabeline);
+
+}
+
+.group-quantite{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 3%;
+}
+
+.quantite-btn{
+    text-decoration: none;
+    background-color: var(--mimi-pink);
+    color: var(--marian-blue);
+    padding: 1% 2%;
+    border-radius: 10px;
+}
+
+.quantite-text{
+    background-color: var(--lavender);
+    color: var(--marian-blue);
+    padding: 1% 5%;
+    border-radius: 10px;
+}
+
+.left{
+    align-self: flex-end;
+}
+
+.total-price{
+    background-color: var(--transparent-blue);
+    color: var(--isabeline);
+    padding: 1% 2%;
+    border-radius: 10px;
+    font-size: 20px;
+    align-self: center;
+}
+
+.confirm-cart{
+    background-color: var(--mimi-pink);
+    color: var(--marian-blue);
+    padding: 1% 2%;
+    border-radius: 20px;
+    font-size: 20px;
+    text-decoration: none;
+    align-self: center;
+}

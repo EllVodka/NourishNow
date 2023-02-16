@@ -21,11 +21,12 @@ class LivreurController extends AbstractController
     public function index(CommandeRepository $commandeRepository): Response
 
     {
-        
-        $commandes_prete = $commandeRepository->findBy(array('fk_status' => 3));
+        $commandePrete = $commandeRepository->findCommandByStatusAndDateInSecteur($this->getUser()->getPersonne()->getFkVille()->getFkSecteur()->getId());
         return $this->render('livreur/index.html.twig', [
             'controller_name' => 'LivreurController',
-            'commandes_prete' => $commandes_prete
+
+            'commandes_prete' => $commandePrete
+
         ]);
     }
 
@@ -33,24 +34,29 @@ class LivreurController extends AbstractController
      * @Route("/{id}", name="app_view_commande_take")
      * isGranted("ROLE_LIVREUR")
      */
-     public function showCommande(int $id, CommandeRepository $commandeRepository): Response
+    public function showCommande(int $id, CommandeRepository $commandeRepository): Response
 
-     {
+    {
+        $idLivreur = $this->getUser()->getPersonne();
         $commande = $commandeRepository->findCommande($id);
+        
+        $commande[0]->setFkLivreur($idLivreur);
+        $commandeRepository->add($commande[0], true);
+
         return $this->render('livreur/view.html.twig', [
             'commande' => $commande
         ]);
-     }
+    }
 
     /**
-    * @Route("/editstatus/{commande}", name="app_edit_commande_status")
-    * isGranted("ROLE_LIVREUR")
-    */
+     * @Route("/editstatus/{commande}", name="app_edit_commande_status")
+     * isGranted("ROLE_LIVREUR")
+     */
     public function editStatusCommande(Commande $commande, StatusRepository $statusRepository, CommandeRepository $commandeRepository): Response
     {
         $commande->setFkStatus($statusRepository->find(5));
         $commandeRepository->add($commande, true);
-        
+
         return $this->redirectToRoute("app_livreur");
     }
 }
