@@ -20,7 +20,7 @@ class RegistrationPersonneType extends AbstractType
             ->add('telephone')
             ->add('role',ChoiceType::class,[
                 "label"=>"M'inscrire en tant que :",
-                "required"=> false,
+                "required"=> true,
                 'mapped' => false,
                 'choices'=>[
                     "Client"=>"Client",

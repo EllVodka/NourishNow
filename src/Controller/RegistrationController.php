@@ -57,7 +57,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/registerPersonne/{idUser}", name="app_register_personne")
      */
-    public function registerPersonne(int $idUser, Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager): Response
+    public function registerPersonne(User $idUser, Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager): Response
     {
         $user = $userRepository->find($idUser);
         $personne = new Personne();
@@ -66,7 +66,17 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $personne->setFkUser($user);
 
+            if ($form->get('role')->getData() == "Client") {
+                $personne->getFkUser()->setRoles(['ROLE_CLIENT']);
+            } else if ($form->get('role')->getData() == "Livreur") {
+                $personne->getFkUser()->setRoles(["ROLE_LIVREUR"]);
+            } else if ($form->get('role')->getData() == "Restaurateur") {
+                $personne->getFkUser()->setRoles(["ROLE_RESTAURATEUR"]);
+            } else {
+                $personne->getFkUser()->setRoles(['ROLE_CLIENT']);
+            }
 
             $entityManager->persist($personne);
             $entityManager->flush();
@@ -74,7 +84,7 @@ class RegistrationController extends AbstractController
 
 
             dump($personne);
-            return $this->redirectToRoute('_profiler_home');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render(
