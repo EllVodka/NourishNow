@@ -76,19 +76,25 @@ class CommandeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findCommandByStatusAndDate(): array
+    public function findCommandByStatusAndDateInSecteur(int $idSecteur): array
     {
         return $this->createQueryBuilder('c')
             ->addSelect('p')
             ->addSelect('dc')
             ->addSelect('s')
             ->addSelect('r')
+            ->addSelect('v')
+            ->addSelect('sec')
             ->join('c.detailCommandes', 'dc')
             ->join('c.fk_status', 's')
             ->join('dc.fk_plat', 'p')
             ->join('p.fk_restaurant', 'r')
+            ->join('r.fk_ville' , 'v')
+            ->join('v.fk_secteur', 'sec')
             ->where('c.date >= NOW()')
             ->andWhere('c.fk_status = 8')
+            ->andWhere('sec.id = :idSecteur')
+            ->setParameter('idSecteur', $idSecteur)
             ->getQuery()
             ->getResult();
     }

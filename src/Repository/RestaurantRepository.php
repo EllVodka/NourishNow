@@ -52,6 +52,20 @@ class RestaurantRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findRestaurantInSecteur(int $idSecteur)
+
+    {
+        return $this->createQueryBuilder('r')
+        ->addSelect('v')
+        ->addSelect('s')
+        ->join('r.fk_ville','v')
+        ->join('v.fk_secteur', 's')
+        ->where('v.fk_secteur = :idSecteur')
+        ->setParameter('idSecteur', $idSecteur)
+        ->getQuery()
+        ->getResult();
+    }
+
 //    /**
 //     * @return Restaurant[] Returns an array of Restaurant objects
 //     */

@@ -21,7 +21,7 @@ class LivreurController extends AbstractController
     public function index(CommandeRepository $commandeRepository): Response
 
     {
-        $commandePrete = $commandeRepository->findCommandByStatusAndDate();
+        $commandePrete = $commandeRepository->findCommandByStatusAndDateInSecteur($this->getUser()->getPersonne()->getFkVille()->getFkSecteur()->getId());
         return $this->render('livreur/index.html.twig', [
             'controller_name' => 'LivreurController',
 
