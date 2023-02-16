@@ -1,0 +1,34 @@
+.page-resto {
+    margin: 0px 10%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3vh;
+}
+
+.resto-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 20px;
+    background-color: var(--transparent-blue);
+    color: var(--isabeline);
+    height: 10vh;
+}
+
+.resto-card-img {
+    margin: 0.4% 0px;
+    height: 90%;
+    width: 10%;
+    background-color: black;
+    border-radius: 20px;
+    /* margin-left: 1vw; */
+}
+
+.resto-card-btn{
+    background-color: var(--mimi-pink);
+    color: var(--marian-blue);
+    padding: 1% 2%;
+    border-radius: 20px;
+    text-decoration: none;
+}
