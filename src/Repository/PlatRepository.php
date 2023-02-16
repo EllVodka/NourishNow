@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Plat;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Parameter;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,6 +38,19 @@ class PlatRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findPlat(int $idResto)
+    {
+        return $this->createQueryBuilder('p')
+            ->addSelect('r')
+            ->join('p.fk_restaurant', 'r')
+            ->andWhere('r.id = :id')
+            ->andWhere('p.Disponibilite = 1')
+            ->setParameter('id',$idResto)
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
 //    /**
