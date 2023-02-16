@@ -317,16 +317,17 @@ class AppFixtures extends Fixture
         $commandeSevran->setDestination($personneClient2->getAdresse());
         $commandeSevran->setFkClient($personneClient);
         $commandeSevran->setFkStatus($statusPrete);
+        $manager->persist($commandeSevran);
 
         $commandePasPrete = new Commande();
         $commandePasPrete->setDestination($personneClient->getAdresse());
         $commandePasPrete->setFkClient($personneClient);
         $commandePasPrete->setFkStatus($statusAttente);
-        $manager->persist($commandeSevran);
+        $manager->persist($commandePasPrete);
 
         // Création des commandes dans la table commande \\
 
-        // Création des détails de commande dans la table commande \\
+        // Création des détails de commande dans la table detailcommande \\
 
         $detailCommandeJuju = new DetailCommande();
         $detailCommandeJuju->setFkPlat($platMexicain);
