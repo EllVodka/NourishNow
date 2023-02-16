@@ -69,10 +69,16 @@ class Personne
      */
     private $fk_user;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Evaluation::class, mappedBy="fk_client")
+     */
+    private $evaluations;
+
     public function __construct()
     {
         $this->restaurants = new ArrayCollection();
         $this->commandes = new ArrayCollection();
+        $this->evaluations = new ArrayCollection();
     }
     public function __toString()
     {
@@ -236,6 +242,36 @@ class Personne
     public function setFkUser(?User $fk_user): self
     {
         $this->fk_user = $fk_user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Evaluation>
+     */
+    public function getEvaluations(): Collection
+    {
+        return $this->evaluations;
+    }
+
+    public function addEvaluation(Evaluation $evaluation): self
+    {
+        if (!$this->evaluations->contains($evaluation)) {
+            $this->evaluations[] = $evaluation;
+            $evaluation->setFkClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvaluation(Evaluation $evaluation): self
+    {
+        if ($this->evaluations->removeElement($evaluation)) {
+            // set the owning side to null (unless already changed)
+            if ($evaluation->getFkClient() === $this) {
+                $evaluation->setFkClient(null);
+            }
+        }
 
         return $this;
     }
