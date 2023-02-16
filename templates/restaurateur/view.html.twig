@@ -3,23 +3,56 @@
 {% block title %}Hello RestaurateurController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper {
-        margin: 1em auto;
-        max-width: 800px;
-        width: 95%;
-        font: 18px/1.5 sans-serif;
-    }
+<link rel="stylesheet" href="/styles/restaurateur.css">
 
-    .example-wrapper code {
-        background: #F5F5F5;
-        padding: 2px 6px;
-    }
-</style>
+<div class="page-resto">
+    <div class="title-image">
+        <h1 class="title">
+            {{ restaurant.nom }}
+        </h1>
+        <div class="image-for-title">
+            <img src="" alt="">
+        </div>
+    </div>
 
-<div class="example-wrapper">
-    {{ dump(restaurant) }}
+    <p class="description-resto">{{ restaurant.description }}</p>
+
+    <div class="all-card-view-plat">
+        {% for p in restaurant.plats %}
+        <div class="card-view-plat">
+            <div class="image-view-plat">
+                <img src="" alt="">
+            </div>
+            <h2 class="plat-title">{{ p.libelle }}</h2>
+
+            <p class="plat-description">
+                {{ p.description }}
+            </p>
+
+            <p class="plat-price">
+                {{ p.tarif }} €
+            </p>
+            <div class="plat-edit-btn">
+                <a href="{{ path('app_plat_edit',{'id':p.id}) }}">
+                    <i class="fa-solid fa-pen fa-xl"></i>
+                </a>
+            </div>
+
+        </div>
+
+        {% else %}
+    </div>
+
+    <h1>Vous n'avez pas de plat</h1>
+    {% endfor %}
+
+    
 
 
+</div>
+<div class="group-btn-resto">
+    <a class="btn-resto" href="{{ path('app_plat_add',{"idResto":restaurant.id}) }}">Ajouter un plat</a>
+    
+    <a class="btn-resto" href="{{ path('app_commande',{'idResto':restaurant.id}) }}">Voir mes commandes</a>
 </div>
 {% endblock %}

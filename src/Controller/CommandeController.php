@@ -22,7 +22,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class CommandeController extends AbstractController
 {
     /**
-     * @Route("/{idResto}", name="app_commande")
+     * @Route("/{idResto<\d+>}", name="app_commande")
      * @IsGranted("ROLE_RESTAURATEUR")
      */
     public function viewByRestoId(int $idResto, CommandeRepository $commandeRepository): Response
