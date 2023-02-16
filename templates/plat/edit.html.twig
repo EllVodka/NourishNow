@@ -2,11 +2,28 @@
 {% block title %}{% endblock %}
 
 {% block body %}
+<link rel="stylesheet" href="/styles/plat.css">
 {{ form_start(platForm) }}
-{{ form_row(platForm.libelle) }}
-{{ form_row(platForm.description) }}
-{{ form_row(platForm.tarif) }}
-{{ form_row(platForm.Disponibilite) }}
-{{ form_row(platForm.Ajouter) }}
+<div class="page-plat">
+    <div class="input-plat">
+        {{ form_label(platForm.libelle) }}
+        {{ form_widget(platForm.libelle) }}
+    </div>
+    <div class="input-plat">
+        {{ form_label(platForm.description) }}
+        {{ form_widget(platForm.description) }}
+    </div>
+    <div class="input-plat">
+        {{ form_label(platForm.tarif) }}
+        {{ form_widget(platForm.tarif) }}
+    </div>
+    <div class="input-plat-dispo">
+        {{ form_label(platForm.Disponibilite) }}
+        {{ form_widget(platForm.Disponibilite) }}
+    </div>
+    <div class="btn-confirm-plat">
+        {{ form_row(platForm.Ajouter) }}
+    </div>
+</div>
 {{ form_end(platForm) }}
 {% endblock %}
