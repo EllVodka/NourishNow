@@ -25,10 +25,63 @@
     /* margin-left: 1vw; */
 }
 
-.resto-card-btn{
+.resto-card-btn {
     background-color: var(--mimi-pink);
     color: var(--marian-blue);
     padding: 1% 2%;
     border-radius: 20px;
     text-decoration: none;
+}
+
+.edit-resto-card {
+    margin-top: 2%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 5vh;
+    align-items: center;
+    justify-items: center
+
+}
+
+.input-card{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.input-card :is(input,select,textarea){
+    height: 5vh;
+    width: 20vw;
+    padding-left: 5%;
+    border-radius: 20px;
+    background-color: var(--lavender);
+    color: var(--marian-blue);
+    border: none;
+    font-size: 24px;
+}
+
+.input-card label{
+    padding-left: 5%;
+    font-size: 24px;
+}
+.btn-edit-resto{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.btn-edit-resto button{
+    background-color: var(--mimi-pink);
+    color: var(--marian-blue);
+    margin: auto;
+    border-radius: 20px;
+    padding: 1% 2%;
+    text-align: center;
+    border: none;
+    font-size: 24px;
+}
+
+.btn-edit-resto button:hover{
+    cursor: pointer;
 }
