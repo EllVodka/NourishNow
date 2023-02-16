@@ -34,13 +34,13 @@ class LivreurController extends AbstractController
      * @Route("/{id}", name="app_view_commande_take")
      * isGranted("ROLE_LIVREUR")
      */
-    public function showCommande(int $id, CommandeRepository $commandeRepository): Response
-
+    public function showCommande(int $id, CommandeRepository $commandeRepository, StatusRepository $statusRepository): Response
     {
         $idLivreur = $this->getUser()->getPersonne();
         $commande = $commandeRepository->findCommande($id);
-        
+
         $commande[0]->setFkLivreur($idLivreur);
+        $commande[0]->setFkStatus($statusRepository->find(4));
         $commandeRepository->add($commande[0], true);
 
         return $this->render('livreur/view.html.twig', [
