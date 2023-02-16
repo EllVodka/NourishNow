@@ -21,7 +21,6 @@
 
 {% block body %}
 <link rel="stylesheet" href="/styles/client.css">
-{{ dump(restaurants) }}
 {% for r in restaurants %}
 <div class="page-client">
     <div class="h-card">
@@ -37,18 +36,20 @@
         <div class="description">
             <p> {{r.description}} </p>
         </div>
-
-        {% if r.evaluations | length > 0 %}
-        {% set note = 0  %}
-        {% for e in r.evaluations  %}
+        <div class="eval">
+            <a class="btn-commande " href="{{path('app_evaluation_eval',{'restaurant':r.id})}}">Notez le restaurant</a>
+            {% if r.evaluations | length > 0 %}
+            {% set note = 0 %}
+            {% for e in r.evaluations %}
             {% set note = note + e.note %}
-        {% endfor %}
-    
-        <p> {{ note / r.evaluations | length }} <i class="fa-solid fa-star"></i></p>
-        {% else %}
-        <p>Pas de note</p>
-        {% endif %}
-        <a href="{{path('app_evaluation_eval',{'restaurant':r.id})}}">Notez le restaurant</a>
+            {% endfor %}
+
+            <p class="margin-left"> {{ note / r.evaluations | length }} <i class="fa-solid fa-star"></i></p>
+            {% else %}
+            <p class="margin-left">Pas de note</p>
+            {% endif %}
+
+        </div>
         <div class="commande">
             <a href="{{ path('app_client_view_resto',{'restaurant':r.id}) }}" class="btn-commande">Commander ici</a>
         </div>

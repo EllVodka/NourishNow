@@ -28,6 +28,14 @@
     justify-content: center;
     width: 10%;
 }
+.eval{
+    display: flex;
+    align-items: center;
+    width: 10%;
+}
+.margin-left{
+    margin-left: 1vw;
+}
 
 .btn-commande {
     border-radius: 20px;
@@ -35,6 +43,7 @@
     background-color: var(--isabeline);
     color: var(--marian-blue);
     text-align: center;
+    text-decoration: none;
 }
 
 .page-plat{
@@ -83,3 +92,34 @@
 .card-ajout-btn a{   
     color: var(--isabeline);
 }
+
+.page-eval-add{
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.input-eval select {
+    height: 5vh;
+    width: 20vw;
+    padding-left: 5%;
+    border-radius: 20px;
+    background-color: var(--lavender);
+    color: var(--marian-blue);
+    border: none;
+    font-size: 24px;
+}
+
+.btn-eval button{
+    height: 5vh;
+    width: 15vw;
+    border: 0;
+    align-self: center;
+    border-radius: 10px;
+    font-size: 1.3em;
+    color: var(--marian-blue);
+    background-color: var(--mimi-pink);
+}
+
