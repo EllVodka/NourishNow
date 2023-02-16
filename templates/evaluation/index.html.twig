@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EvaluationController!{% endblock %}
+
+{% block body %}
+{{ form_start(evalForm) }}
+{{ form_label(evalForm.note) }}
+{{ form_widget(evalForm.note) }}
+{{ form_widget(evalForm.Ajouter) }}
+{{ form_end(evalForm) }}
+{% endblock %}
