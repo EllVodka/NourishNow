@@ -42,16 +42,15 @@
     grid-row-gap: 5vh;
     align-items: center;
     justify-items: center
-
 }
 
-.input-card{
+.input-card {
     display: flex;
     flex-direction: column;
 
 }
 
-.input-card :is(input,select,textarea){
+.input-card :is(input, select, textarea) {
     height: 5vh;
     width: 20vw;
     padding-left: 5%;
@@ -62,16 +61,18 @@
     font-size: 24px;
 }
 
-.input-card label{
+.input-card label {
     padding-left: 5%;
     font-size: 24px;
 }
-.btn-edit-resto{
+
+.btn-edit-resto {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
-.btn-edit-resto button{
+
+.btn-edit-resto button {
     background-color: var(--mimi-pink);
     color: var(--marian-blue);
     margin: auto;
@@ -82,6 +83,99 @@
     font-size: 24px;
 }
 
-.btn-edit-resto button:hover{
+.btn-edit-resto button:hover {
     cursor: pointer;
+}
+
+.title-image {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    position: absolute;
+    color: var(--isabeline);
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.image-for-title {
+    border-radius: 20px;
+    background-color: black;
+    width: 100%;
+    height: 30vh;
+}
+.description-resto{
+    text-align: center;
+    font-size: 24px;
+    color: var(--marian-blue);
+}
+
+.all-card-view-plat{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 3vw;
+    grid-row-gap: 3vh;
+    align-items: center;
+    justify-items: center
+}
+
+.card-view-plat{
+    background-color: var(--transparent-blue);
+    border-radius: 20px;
+    width: 100%;
+    height: 25vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 3fr 1fr;
+    grid-column-gap: 25px;
+    grid-row-gap: 0px;
+    align-items: center;
+    color: var(--isabeline);
+    justify-items: center;
+}
+
+.image-view-plat{
+    grid-area: 1 / 1 / 3 / 2; 
+    margin-left: 10%;
+    background-color: black;
+    border-radius: 20px;
+    height: 70%;
+    width: 100%;
+    align-self: self-start;
+    margin-top: 10%;
+}
+
+.plat-title{
+}
+.plat-description{
+    font-size: large;
+}
+.plat-price{
+    font-size: large;
+}
+.plat-edit-btn{
+    grid-area: 3 / 2 / 4 / 3;
+}
+.plat-edit-btn a{
+    height: 100%;
+    color: var(--isabeline);
+    text-decoration: none;
+}
+.group-btn-resto{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+.btn-resto{
+    background-color: var(--lavender);
+    color: var(--marian-blue);
+    border-radius: 20px;
+    padding: 1% 2%;
+    text-decoration: none;
+    font-size: 24px;
 }
