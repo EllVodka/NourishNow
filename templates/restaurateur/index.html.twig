@@ -17,6 +17,7 @@
         <a class="resto-card-btn" href="{{ path('app_restaurateur_view',{'id':r.id}) }}">Voir le resto</a>
     </div>
     {% endfor %}
-
+    <a class="resto-card-btn " href="{{ path('app_restaurateur_add') }}">Ajouter un resto</a>
 </div>
+
 {% endblock %}
