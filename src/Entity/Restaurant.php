@@ -54,9 +54,15 @@ class Restaurant
      */
     private $description;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Evaluation::class, mappedBy="fk_restaurant")
+     */
+    private $evaluations;
+
     public function __construct()
     {
         $this->plats = new ArrayCollection();
+        $this->evaluations = new ArrayCollection();
     }
 public function __toString()
 {
@@ -165,6 +171,36 @@ public function __toString()
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Evaluation>
+     */
+    public function getEvaluations(): Collection
+    {
+        return $this->evaluations;
+    }
+
+    public function addEvaluation(Evaluation $evaluation): self
+    {
+        if (!$this->evaluations->contains($evaluation)) {
+            $this->evaluations[] = $evaluation;
+            $evaluation->setFkRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvaluation(Evaluation $evaluation): self
+    {
+        if ($this->evaluations->removeElement($evaluation)) {
+            // set the owning side to null (unless already changed)
+            if ($evaluation->getFkRestaurant() === $this) {
+                $evaluation->setFkRestaurant(null);
+            }
+        }
 
         return $this;
     }

@@ -10,19 +10,19 @@
         <option value="0">Dans votre secteur</option>
         {% for v in villes %}
         <option value="{{ v.id }}">
-                {{v.libelle}}
+            {{v.libelle}}
         </option>
 
         {% endfor %}
     </select>
 </div>
-<script src="/js/script.js"></script>
+
 {% endblock ville %}
 
 {% block body %}
 <link rel="stylesheet" href="/styles/client.css">
+{% for r in restaurants %}
 <div class="page-client">
-    {% for r in restaurants %}
     <div class="h-card">
         <div class="h-card-img">
             <img src="" alt="">
@@ -36,17 +36,26 @@
         <div class="description">
             <p> {{r.description}} </p>
         </div>
+        <div class="eval">
+            <a class="btn-commande " href="{{path('app_evaluation_eval',{'restaurant':r.id})}}">Notez le restaurant</a>
+            {% if r.evaluations | length > 0 %}
+            {% set note = 0 %}
+            {% for e in r.evaluations %}
+            {% set note = note + e.note %}
+            {% endfor %}
+
+            <p class="margin-left"> {{ note / r.evaluations | length }} </p>
+            <i class="fa-solid fa-star"></i>
+            {% else %}
+            <p class="margin-left">Pas de note</p>
+            {% endif %}
+
+        </div>
         <div class="commande">
             <a href="{{ path('app_client_view_resto',{'restaurant':r.id}) }}" class="btn-commande">Commander ici</a>
         </div>
     </div>
-
-
 </div>
-
-
-
 {% endfor %}
-
-
+<script src="/js/script.js"></script>
 {% endblock %}

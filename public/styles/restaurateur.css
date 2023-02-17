@@ -31,7 +31,9 @@
     padding: 1% 2%;
     border-radius: 20px;
     text-decoration: none;
+    align-self: center ;
 }
+
 
 .edit-resto-card {
     margin-top: 2%;
@@ -117,7 +119,6 @@
 .all-card-view-plat{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 3vw;
     grid-row-gap: 3vh;
     align-items: center;
     justify-items: center

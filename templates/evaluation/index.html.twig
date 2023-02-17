@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EvaluationController!{% endblock %}
+{% block ville %}
+<div class="arrow-left">
+
+    <a href="{{ path('app_client') }}"><i class="fa-solid fa-arrow-left fa-2xl"></i></a>
+</div>
+
+{% endblock ville %}
+
+{% block body %}
+<link rel="stylesheet" href="/styles/client.css">
+{{ form_start(evalForm) }}
+
+<div class="page-eval-add">
+    <div class="input-eval">
+        {{ form_widget(evalForm.note) }}
+    </div>    
+    <div class="btn-eval">
+        {{ form_widget(evalForm.Ajouter) }}
+    </div>
+</div>
+{{ form_end(evalForm) }}
+{% endblock %}

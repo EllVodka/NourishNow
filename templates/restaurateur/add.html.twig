@@ -1,17 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{% endblock %}
+{% block ville %}
+<div class="arrow-left">
 
+    <a href="{{ path('app_restaurateur') }}"><i class="fa-solid fa-arrow-left fa-2xl"></i></a>
+</div>
+
+{% endblock ville %}
 {% block body %}
+<link rel="stylesheet" href="/styles/restaurateur.css">
 {{ form_start(formRestaurant) }}
+<div class="edit-resto-card">
 
-            {{ form_label(formRestaurant.nom) }}
-            {{ form_widget(formRestaurant.nom) }}
+    <div class="input-card">
+        {{ form_label(formRestaurant.nom) }}
+        {{ form_widget(formRestaurant.nom) }}
+    </div>
 
-            {{ form_label(formRestaurant.lieu) }}
-            {{ form_widget(formRestaurant.lieu) }}
+    <div class="input-card">
+        {{ form_label(formRestaurant.lieu) }}
+        {{ form_widget(formRestaurant.lieu) }}
+    </div>
+    <div class="input-card">
+        {{ form_label(formRestaurant.fk_typeResto) }}
+        {{ form_widget(formRestaurant.fk_typeResto) }}
+    </div>
+    <div class="input-card">
+        {{ form_label(formRestaurant.fk_ville) }}
+        {{ form_widget(formRestaurant.fk_ville) }}
+    </div>
+    <div class="input-card">
+        {{ form_label(formRestaurant.description) }}
+        {{ form_widget(formRestaurant.description) }}
+    </div>
 
-            {{ form_widget(formRestaurant.Ajouter) }}
+</div>
+<div class="btn-edit-resto blue-hover">
+    {{ form_widget(formRestaurant.Ajouter) }}
+</div>
 
-    {{ form_end(formRestaurant) }}
+{{ form_end(formRestaurant) }}
 {% endblock %}
