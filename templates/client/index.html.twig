@@ -44,7 +44,8 @@
             {% set note = note + e.note %}
             {% endfor %}
 
-            <p class="margin-left"> {{ note / r.evaluations | length }} <i class="fa-solid fa-star"></i></p>
+            <p class="margin-left"> {{ note / r.evaluations | length }} </p>
+            <i class="fa-solid fa-star"></i>
             {% else %}
             <p class="margin-left">Pas de note</p>
             {% endif %}
