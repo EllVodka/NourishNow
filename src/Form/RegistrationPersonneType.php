@@ -8,8 +8,10 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class RegistrationPersonneType extends AbstractType
 {
@@ -18,8 +20,16 @@ class RegistrationPersonneType extends AbstractType
         $builder
             ->add('nom')
             ->add('prenom')
-            ->add('email')
-            ->add('telephone')
+            ->add('email', TextType::class,[
+                'required' => true,
+                'constraints' => [new Regex(['pattern'=>'/^[\w\.]+@([\w-]+\.)+[\w-]{2,4}$/',
+                'message'=>'Tapez un mail valide'])] 
+            ])
+            ->add('telephone', TextType::class,[
+                'required' => true,
+                'constraints' => [new Regex(['pattern'=>'/^[0-9]{10}$/',
+                'message'=>'Le numéros de télephone doit avoir 10 chiffre'])] 
+            ])
             ->add('role', ChoiceType::class, [
                 "label" => "M'inscrire en tant que :",
                 "required" => true,
