@@ -89,7 +89,7 @@ class CommandeRepository extends ServiceEntityRepository
             ->join('c.fk_status', 's')
             ->join('dc.fk_plat', 'p')
             ->join('p.fk_restaurant', 'r')
-            ->join('r.fk_ville' , 'v')
+            ->join('r.fk_ville', 'v')
             ->join('v.fk_secteur', 'sec')
             ->where('DAY(c.date) = DAY(NOW())')
             ->andWhere('c.fk_status = 3')
@@ -107,21 +107,20 @@ class CommandeRepository extends ServiceEntityRepository
             ->addSelect('p')
             ->addSelect('r')
             ->addSelect('v')
-            ->join('c.fk_client' , 'cl')
+            ->join('c.fk_client', 'cl')
             ->join('c.detailCommandes', 'dc')
-            ->join('dc.fk_plat' , 'p')
-            ->join('p.fk_restaurant' , 'r')
-            ->join('r.fk_ville','v')
+            ->join('dc.fk_plat', 'p')
+            ->join('p.fk_restaurant', 'r')
+            ->join('r.fk_ville', 'v')
             ->where('cl.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
             ->getResult();
     }
-
     //    /**
     //     * @return Commande[] Returns an array of Commande objects
     //     */
-    
+
     //    public function findByExampleField($value): array
     //    {
     //        return $this->createQueryBuilder('c')
