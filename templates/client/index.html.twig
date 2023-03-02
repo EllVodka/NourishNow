@@ -38,14 +38,24 @@
             <p> {{r.description}} </p>
         </div>
         <div class="eval">
+            {% set nbEval = 0 %}
+            {% for e in eval %}
+            {% if e.fkrestaurant.id == r.id %}
+            {% set nbEval = nbEval + 1 %}
+            {% endif %}
+            {% endfor %}
+
+            {% if nbEval == 0 %}
             <a class="btn-commande " href="{{path('app_evaluation_eval',{'restaurant':r.id})}}">Notez le restaurant</a>
+            {% endif %}
+
             {% if r.evaluations | length > 0 %}
             {% set note = 0 %}
             {% for e in r.evaluations %}
             {% set note = note + e.note %}
             {% endfor %}
 
-            <p class="margin-left"> {{ note / r.evaluations | length }} </p>
+            <p class="margin-left"> {{ (note / r.evaluations | length) | round(1,'floor') }} </p>
             <i class="fa-solid fa-star"></i>
             {% else %}
             <p class="margin-left">Pas de note</p>

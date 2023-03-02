@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Restaurant;
 use App\Entity\Ville;
 use App\Repository\CommandeRepository;
+use App\Repository\EvaluationRepository;
 use App\Repository\PersonneRepository;
 use App\Repository\PlatRepository;
 use App\Repository\RestaurantRepository;
@@ -24,7 +25,7 @@ class ClientController extends AbstractController
     /**
      * @Route("/", name="app_client")
      */
-    public function index(RestaurantRepository $restaurantRepository,VilleRepository $villeRepository): Response
+    public function index(RestaurantRepository $restaurantRepository, VilleRepository $villeRepository, EvaluationRepository $evaluationRepository): Response
     {
         $restaurants = new Restaurant();
 
@@ -38,13 +39,16 @@ class ClientController extends AbstractController
 
         return $this->render('client/index.html.twig', [
             'restaurants' => $restaurants,
-            'villes' => $villeRepository->findAll()
+            'villes' => $villeRepository->findAll(),
+            'eval' => $evaluationRepository->findBy([
+                'fk_client' => $this->getUser()->getPersonne()
+            ]),
         ]);
     }
     /**
      * @Route("/ville/{ville<\d+>}", name="app_client_ville")
      */
-    public function indexVille(Ville $ville, RestaurantRepository $restaurantRepository,VilleRepository $villeRepository): Response
+    public function indexVille(Ville $ville, RestaurantRepository $restaurantRepository, VilleRepository $villeRepository): Response
     {
         $restaurants = $restaurantRepository->findRestaurant($ville->getId());
         return $this->render('client/index.html.twig', [
@@ -76,6 +80,4 @@ class ClientController extends AbstractController
             'commande' => $commande
         ]);
     }
-
-
 }
