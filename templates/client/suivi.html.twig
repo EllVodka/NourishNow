@@ -12,13 +12,27 @@
 <div class="parent-card-livreur">
     {% for c in commande %}
     <div class="card-livreur">
-        <p> {{ commande[0].detailCommandes[0].fkplat.fkrestaurant.nom}}</p>
-        <p> {{ c.destination }}, {{commande[0].detailCommandes[0].fkplat.fkrestaurant.fkville}} </p>
-        <p> {{ c.date | date('j/m/y')}}
-            {% for dc in c.detailCommandes %}
-        <p> {{ dc.quantite }} {{ dc.fkplat }} </p>
-        
-            {% endfor %}
+        <div class="flex-h  horizontal-ligne">
+            <p>{{ commande[0].detailCommandes[0].fkplat.fkrestaurant.nom}}</p>
+            <p>{{ c.destination }}, {{commande[0].detailCommandes[0].fkplat.fkrestaurant.fkville}} </p>
+        </div>
+
+        <p> {{ c.date | date('j/m/y h:i')}}
+        <div class="card-livreur-commande">
+            <div class="card-commande">
+                {% set total = 0 %}
+                {% for dc in c.detailCommandes %}
+                {% set total = total + (dc.quantite * dc.fkplat.tarif) %}
+                <span> {{ dc.quantite }} {{ dc.fkplat }} </span>
+                {% endfor %}
+            </div>
+            <div class="card-commande-status">
+                <span>{{ c.fkstatus.libelle }}</span>
+                <span> {{ total }} €</span>
+
+            </div>
+        </div>
+
     </div>
 
     {% endfor %}
