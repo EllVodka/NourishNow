@@ -6,6 +6,14 @@
 <link rel="stylesheet" href="/styles/restaurateur.css">
 <div class="page-resto">
     {% for r in restaurants %}
+    {% set nbCommande = 0 %}
+    {% for dc in detailCommandes %}
+
+    {% if dc.fkplat.fkrestaurant.id == r.id and dc.fkcommande.fkstatus.id < 4 %}
+        {% set nbCommande = nbCommande + 1 %}
+    {% endif %}
+        
+    {% endfor %}
     <div class="resto-card">
         <div class="resto-card-img ">
             <img src="" alt="">
@@ -13,6 +21,10 @@
         <h2>
             {{ r.nom }}
         </h2>
+        <div class="resto-card-commande">
+            <span class="count-commande">{{ nbCommande }} </span>
+            <a class="resto-card-btn" href="{{path('app_commande',{'idResto':r.id}) }}">Voir les commandes</a>
+        </div>
         <a class="resto-card-btn" href="{{ path('app_restaurateur_edit',{'id':r.id}) }}">Modifier le resto</a>
         <a class="resto-card-btn" href="{{ path('app_restaurateur_view',{'id':r.id}) }}">Voir le resto</a>
     </div>

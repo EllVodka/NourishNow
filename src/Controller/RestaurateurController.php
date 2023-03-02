@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\DetailCommande;
 use App\Entity\Restaurant;
 use App\Form\RestaurateurType;
+use App\Repository\CommandeRepository;
+use App\Repository\DetailCommandeRepository;
 use App\Repository\PersonneRepository;
 use App\Repository\RestaurantRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -22,13 +25,14 @@ class RestaurateurController extends AbstractController
     /**
      * @Route("/", name="app_restaurateur")
      */
-    public function index(RestaurantRepository $restaurantRepository): Response
+    public function index(RestaurantRepository $restaurantRepository,DetailCommandeRepository $detailCommandeRepository): Response
     {
         $id = $this->getUser()->getPersonne()->getId();
         $restaurants = $restaurantRepository->findBy(array('fk_personne' => $id));
         
         return $this->render('restaurateur/index.html.twig', [
             'restaurants' => $restaurants,
+            'detailCommandes' => $detailCommandeRepository->findAll()
         ]);
     }
 

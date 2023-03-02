@@ -16,19 +16,34 @@
     height: 10vh;
 }
 
+.resto-card-commande{
+    height: 100%;
+    width: 10vw;
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+
+}
+
+.count-commande{
+    background-color: var(--palatinate);
+    padding: 5px 10px;
+    border-radius: 9999px;
+}
+
 .resto-card-img {
     margin: 0.4% 0px;
     height: 90%;
     width: 10%;
     background-color: black;
     border-radius: 20px;
-    /* margin-left: 1vw; */
 }
 
 .resto-card-btn {
+    text-align: center;
     background-color: var(--mimi-pink);
     color: var(--marian-blue);
-    padding: 1% 2%;
+    padding: 1vh 2vw;
     border-radius: 20px;
     text-decoration: none;
     align-self: center ;
