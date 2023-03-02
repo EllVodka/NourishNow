@@ -11,10 +11,12 @@
         <div class="register-user-input">
             {{ form_label(registrationForm.email) }}
             {{ form_widget(registrationForm.email) }}
+            {{ form_errors(registrationForm.email) }}
         </div>
         <div class="register-user-input">
             {{ form_label(registrationForm.plainPassword) }}
             {{ form_widget(registrationForm.plainPassword) }}
+            {{ form_errors(registrationForm.plainPassword) }}
         </div>
 
         <span class="btn-form-user">
