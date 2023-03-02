@@ -13,15 +13,39 @@
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     font-size: 18px;
+}
+
+.card-livreur-commande{
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 16px;
 }
 
 .btn-card-livreur {
     text-decoration: none;
     color: var(--isabeline);
     margin-bottom: 5%;
+}
+
+.card-commande{
+    display: flex;
+    flex-direction: column;
+}
+
+:is(.card-commande,.card-commande-status) span{
+    padding-bottom: 16px;
+}
+
+.card-commande-status{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: end;
 }
 
 .horizontal-ligne{
@@ -63,4 +87,10 @@
     padding: 1% 2%;
     border-radius: 20px;
     text-decoration: none;
+}
+
+.flex-h{
+    display: flex;
+    align-self: stretch;
+    justify-content: space-evenly;
 }
